@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>Blocks CMS</title>
+        <link rel="stylesheet" type="text/css" href="{{blocks.site_base}}/{{blocks.be_base}}/css/font.css">
+        <link rel="stylesheet" type="text/css" href="{{blocks.site_base}}/{{blocks.be_base}}/css/ionicons.min.css">
+        <link rel="stylesheet" type="text/css" href="{{blocks.site_base}}/{{blocks.be_base}}/css/blocks.css">
+    </head>
+    <body>
+    {% if user %}
+    	<header>
+    		<ul>
+    			<li><a class="ion-social-buffer logo"></a></li>
+    			{% for nav, url in navigation %}
+    				<li><a class="link" href="{{blocks.site_base}}/{{blocks.backend}}{{url}}">{{nav}}</a></li>
+    			{% endfor %}
+    			<li class="right"><a href="">Logout</a></li>
+    			<li class="right"><a href="">Homepage</a></li>
+    		</ul>
+    	</header>
+    {% endif %}
+    	<section class="blocks-container">
+        {% block body %}{% endblock %}
+        </section>
+
+        <footer>
+        	<p>Blocks CMS {{blocks.version}} - made with love by <a target="_blank" href="{{blocks.whitelabel_url}}">{{blocks.whitelabel}}</a></p>
+        </footer>
+
+        <script type="text/javascript" src="{{blocks.site_base}}/{{blocks.be_base}}/js/jquery.js"></script>
+        <script type="text/javascript" src="{{blocks.site_base}}/{{blocks.be_base}}/js/jquery.ui.js"></script>
+        <script type="text/javascript" src="{{blocks.site_base}}/{{blocks.be_base}}/js/jsplumb.js"></script>
+        <script type="text/javascript" src="{{blocks.site_base}}/{{blocks.be_base}}/js/page.js"></script>
+
+        <!-- Google Analytics Tracking -->
+        <script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', '{{blocks.ga}}', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+        <!-- Google Analytics Tracking -->
+
+    </body>
+</html>
