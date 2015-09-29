@@ -3,23 +3,19 @@
 
 	<section class="col-6">
 		<div class="inner">
-			<h2>Pages <a href="" class="add-new ion-plus"></a></h2>
+			<h2>Pages <a href="pages/new" class="add-new ion-plus"></a></h2>
 
-			<form>
-				<input class="add-new" type="text" placeholder="New page name.."/>
+			<form method="get" action="pages/new">
+				<input class="add-new" name="name" type="text" placeholder="New page name.."/>
 			</form>
 			<ul class="list">
-				<li>
-					<i class=""></i>
-					<p><a href="#">Homepage</a></p>
-					<small>/home <span>created on 21 Aug 2015</span></small>
-				</li>
-
-				<li>
-					<i class=""></i>
-					<p><a href="#">Contact</a></p>
-					<small>/home <span>created on 21 Aug 2015</span></small>
-				</li>
+				{% for page in pages %}
+					<li>
+						<i class=""></i>
+						<p><a href="#">{{page.page.title}}</a></p>
+						<small>{{page.page.url}} <span>Status: {{page.page.published|capitalize}}</span></small>
+					</li>
+				{% endfor %}
 			</ul>
 
 		</div>

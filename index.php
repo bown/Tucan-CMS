@@ -19,6 +19,7 @@ require 'app/lib/database/database.php';
 //Dependencies
 require 'app/class/database.php';
 require 'app/class/template.php';
+require 'app/class/errors.php';
 
 //Setup Klein
 $route = new \Klein\Klein();

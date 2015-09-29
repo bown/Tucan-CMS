@@ -72,15 +72,14 @@ var page = {
 
 				data['name'] = form[0].name;
 				data['title'] = form[0].title;
-				data['published'] = $('select[name="published"]').val();
-
+				data['published'] = $('select[name="published"]').val();;
 				for (var prop in form) {
 				    for (var i = form.length - 1; i >= 1; i--) {
-				    	data[i] = "[";
+				    	data[i] = "<tucan-component>";
 				    	for(var intg in form[i]) {
-				    		data[i] = data[i] + intg + ":" + form[i][intg] + ",";
+				    		data[i] = data[i] + intg + "~~" + form[i][intg] + "|";
 				    	}
-				    	data[i] = data[i] + "]";
+				    	data[i] = data[i] + "</tucan-component>";
 				    };
 				}
 				that.publish(JSON.stringify(data));
@@ -92,10 +91,11 @@ var page = {
 
 	publish:function(form) {
 		var that = this;
+		//console.log(form);
 		$.ajax({
 		  type: "POST",
 		  cache: false,
-		  url: "/git/blocks/app/class/ajax.php",
+		  url: "/git/blocks/app/class/ajax.php?type=page",
 		  data: {data: form},
 		  dataType: "html",
 		  success: function(data) {

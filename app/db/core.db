@@ -1,2 +1,1 @@
-
-navigation=a:5:{s:9:"Dashboard";s:1:"/";s:5:"Pages";s:6:"/pages";s:10:"Components";s:11:"/components";s:9:"Variables";s:10:"/variables";s:8:"Settings";s:9:"/settings";}
+navigation=a:6:{s:9:"Dashboard";s:1:"/";s:5:"Pages";s:6:"/pages";s:10:"Components";s:11:"/components";s:9:"Variables";s:10:"/variables";s:5:"Users";s:6:"/users";s:8:"Settings";s:9:"/settings";}

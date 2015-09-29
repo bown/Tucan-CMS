@@ -1,0 +1,45 @@
+{% extends "layout.twig" %}
+{% block body %}
+
+	<section class="col-6">
+		<div class="inner">
+			<h2>Variables</h2>
+
+			<ul class="list">
+				{% for page in pages %}
+					<li>
+						<i class=""></i>
+						<p><a href="#">{{page.page.title}}</a></p>
+						<small>{{page.page.url}} <span>Status: {{page.page.published|capitalize}}</span></small>
+					</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+	</section>
+
+	<section class="col-6">
+		<div class="inner">
+			<h2>Create Variable</h2>
+			<p>Variables are available globally, they can be used in the frontend page layout or within 
+			your components. Don't put sensitive information such as passwords as variables.
+			</p>
+			<form method="post" action="new">
+
+				<div class="form-item required">
+					<label>Key</label>
+					<input name="page" class="add-new" type="text" placeholder="Color" required/>
+					<span title="Required field" class="required">*</span>
+				</div>
+
+				<div class="form-item required">
+					<label>Value</label>
+					<input name="page" class="add-new" type="text" placeholder="Red" required/>
+					<span title="Required field" class="required">*</span>
+				</div>
+				<button type="submit" class="save-item save-form right">Save</button> 
+			</form>
+		</div>
+	</section>
+
+{% endblock %}

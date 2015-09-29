@@ -11,7 +11,7 @@ body {
 header {
   width: 100%;
   height: 50px;
-  background: #3498db; }
+  background: #445A71; }
   header ul {
     margin: 0;
     padding: 0 25px;
@@ -73,7 +73,8 @@ section {
           section.col-6 .inner .component-config .form-item input {
             border: 0;
             padding: 5px;
-            margin: 5px 10px; }
+            margin: 5px 10px;
+            width: 95%; }
       section.col-6 .inner ul.page-canvas {
         padding: 10px;
         width: 98%;
@@ -114,30 +115,43 @@ section {
               section.col-6 .inner ul.page-canvas li.block.locked i {
                 display: none; }
       section.col-6 .inner a.save-item,
+      section.col-6 .inner button.save-item,
+      section.col-6 .inner button.add-item,
       section.col-6 .inner a.add-item {
+        cursor: pointer;
         font-size: 12px;
         padding: 5px 15px;
         margin: 10px 0 0 0;
         color: #fff;
-        background: #3498db;
-        border: 1px solid #3498db;
+        background: #445A71;
+        border: 1px solid #445A71;
         display: inline-block;
         text-decoration: none; }
         section.col-6 .inner a.save-item.m-r-10,
+        section.col-6 .inner button.save-item.m-r-10,
+        section.col-6 .inner button.add-item.m-r-10,
         section.col-6 .inner a.add-item.m-r-10 {
           margin-right: 10px; }
         section.col-6 .inner a.save-item.p-l-10,
+        section.col-6 .inner button.save-item.p-l-10,
+        section.col-6 .inner button.add-item.p-l-10,
         section.col-6 .inner a.add-item.p-l-10 {
           margin: 10px 0 5px 10px; }
         section.col-6 .inner a.save-item.right,
+        section.col-6 .inner button.save-item.right,
+        section.col-6 .inner button.add-item.right,
         section.col-6 .inner a.add-item.right {
           float: right; }
         section.col-6 .inner a.save-item:hover, section.col-6 .inner a.save-item:focus,
+        section.col-6 .inner button.save-item:hover,
+        section.col-6 .inner button.save-item:focus,
+        section.col-6 .inner button.add-item:hover,
+        section.col-6 .inner button.add-item:focus,
         section.col-6 .inner a.add-item:hover,
         section.col-6 .inner a.add-item:focus {
           background: #fff;
-          border: 1px solid #3498db;
-          color: #3498db; }
+          border: 1px solid #445A71;
+          color: #445A71; }
       section.col-6 .inner .form-item {
         padding: 10px 5px 5px 0px;
         border: 1px solid #C4CBD1;
@@ -154,7 +168,7 @@ section {
         section.col-6 .inner .form-item.new-component:first-child {
           display: none; }
         section.col-6 .inner .form-item:hover, section.col-6 .inner .form-item:focus {
-          border-color: #3498db; }
+          border-color: #445A71; }
         section.col-6 .inner .form-item label {
           font-size: 10px;
           padding: 0 10px;
@@ -185,7 +199,7 @@ section {
           font-size: 10px;
           color: #999; }
           section.col-6 .inner .form-item small a {
-            color: #3498db; }
+            color: #445A71; }
         section.col-6 .inner .form-item .add-new {
           border: 0;
           margin: 0;
@@ -200,7 +214,7 @@ section {
           float: right;
           font-weight: 500;
           font-size: 14px;
-          color: #3498db; }
+          color: #445A71; }
       section.col-6 .inner p {
         font-size: 13px;
         letter-spacing: 0.2; }
@@ -226,7 +240,7 @@ section {
               color: inherit;
               text-decoration: none; }
               section.col-6 .inner ul.list li p a:hover {
-                color: #3498db; }
+                color: #445A71; }
           section.col-6 .inner ul.list li small {
             color: #999;
             font-size: 10px; }
@@ -237,12 +251,17 @@ section {
 
 footer {
   position: absolute;
-  display: none;
   bottom: 0;
-  left: 0;
-  padding: 9px; }
-  footer p {
-    color: #aaa;
-    font-size: 11px; }
-    footer p a {
-      color: #999; }
+  width: 100%;
+  left: 0; }
+  footer .inner {
+    padding: 15px 30px; }
+    footer .inner img {
+      position: relative;
+      float: right;
+      opacity: 0.3; }
+    footer .inner p {
+      color: #aaa;
+      font-size: 11px; }
+      footer .inner p a {
+        color: #999; }

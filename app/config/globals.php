@@ -3,12 +3,12 @@
 	class globals {
 
 		function __construct() {
-			$blockfile = "app/config/blocks.json";
+			$blockfile = "app/config/tucan.json";
 			$blockfile = json_decode(file_get_contents($blockfile));
 
-			foreach ($blockfile->blocks as $key => $value) {
-				$_SERVER['blocks'][$key] = $value;
-				$_SESSION['blocks'][$key] = $value;
+			foreach ($blockfile->tucan as $key => $value) {
+				$_SERVER['tucan'][$key] = $value;
+				$_SESSION['tucan'][$key] = $value;
 			}
 		}
 	}

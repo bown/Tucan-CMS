@@ -24,6 +24,7 @@
 			));
 		}
 
+
 		function frontend($template, $arr = []) {
 			return $this->fe->render("$template.twig", $this->constructArray($arr));
 		}
@@ -34,7 +35,7 @@
 
 		function constructArray($arr) {
 			$db = new database("core");
-			$arr['blocks'] = $_SERVER['blocks'];
+			$arr['tucan'] = $_SERVER['tucan'];
 			$arr['navigation'] = $db->select("navigation");
 			if(isset($_SESSION['user'])) {
 				$arr['user'] = $_SESSION['user'];

@@ -1,4 +1,4 @@
-$primary: #3498db;
+$primary: #445A71;
 
 html,
 body {
@@ -9,6 +9,7 @@ body {
 	width: 100%;
 	height: 100%;
 	font-family: 'Open sans', sans-serif;
+
 }
 
 header {
@@ -107,6 +108,7 @@ section {
 						border: 0;
 						padding: 5px;
 						margin: 5px 10px;
+						width: 95%;
 					}
 
 				}
@@ -172,7 +174,10 @@ section {
 			}
 
 			a.save-item,
+			button.save-item,
+			button.add-item,
 			a.add-item {
+				cursor: pointer;
 				font-size: 12px;
 				padding: 5px 15px;
 				margin: 10px 0 0 0;
@@ -366,17 +371,27 @@ section {
 
 footer {
 	position: absolute;
-	display: none;
 	bottom: 0;
+	width: 100%;
 	left: 0;
-	padding: 9px;
 
-	p {
-		color: #aaa;
-		font-size: 11px;
+	.inner {
 
-		a {
-			color: #999;
+		padding: 15px 30px;
+
+		img {
+			position: relative;
+			float: right;
+			opacity: 0.3;
+		}
+
+		p {
+			color: #aaa;
+			font-size: 11px;
+
+			a {
+				color: #999;
+			}
 		}
 	}
 }
