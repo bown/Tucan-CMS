@@ -37,10 +37,12 @@ class database {
 
 	function selectAll() {
 		$keys = $this->db->get_keys();
-		foreach($keys as $key) {
-			$q[$key] = $this->select($key);
+		if(is_array($keys) && $keys) {
+			foreach($keys as $key) {
+				$q[$key] = $this->select($key);
+			}
+			return $q;
 		}
-		return $q;
 
 	}
 

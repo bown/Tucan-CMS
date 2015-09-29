@@ -51,8 +51,9 @@ $route->respond('/[:page]', function($request) {
             }
         }
 
-        $header = $template->frontend("header", ["includes" => $include, "global" => $_SERVER['tucan']]);
-        $footer = $template->frontend("footer", ["includes" => $include, "global" => $_SERVER['tucan']]);
+
+        $header = $template->frontend("header", ["includes" => $include, "tucan" => $_SERVER['tucan']]);
+        $footer = $template->frontend("footer", ["includes" => $include, "tucan" => $_SERVER['tucan']]);
         
         echo $header;
 
@@ -79,8 +80,8 @@ $route->respond("GET", "/$backend/pages", function() {
 
 $route->respond("GET", "/$backend/variables", function() {
     $template = new template();
-    $db = new database("page");
-    echo $template->backend('variables', ["pages" => $db->selectAll()]);
+    $db = new database("vars"); 
+    echo $template->backend('variables', ["vars" => $db->selectAll()]);
 });
 
 $route->respond("GET", "/$backend/users", function() {
@@ -93,13 +94,6 @@ $route->respond("GET", "/$backend/users", function() {
     echo $template->backend('users', ["users" => $db->selectAll()]);
 });
 
-$route->respond("GET", "/$backend/variables", function() {
-    if(isset($_GET['page'])) {
-        $template = new template();
-        $db = new database("page");
-        echo $template->backend('pages', ["pages" => $db->selectAll()]);
-    }
-});
 
 
 $route->respond("GET", "/$backend/pages/edit", function() {

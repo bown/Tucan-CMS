@@ -21,6 +21,10 @@ require 'app/class/database.php';
 require 'app/class/template.php';
 require 'app/class/errors.php';
 
+$db = new database("vars");
+$globals = new globals();
+$globals->globals($db->selectAll());
+
 //Setup Klein
 $route = new \Klein\Klein();
 

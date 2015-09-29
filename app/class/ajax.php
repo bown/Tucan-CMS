@@ -73,6 +73,16 @@ require '../lib/database/database.php';
  			die(json_encode(false));
  		}
  	}
+
+ 	function newVariable($post) {
+ 		if(isset($post['key']) && isset($post['value'])) {
+ 			$db = new database("vars");
+ 			$db->db->set($post['key'], $post['value']);
+ 			return json_encode(true);
+ 		} else {
+ 			return json_encode(false);
+ 		}
+ 	}
  }
 
  $ajax = new ajax();
@@ -82,6 +92,10 @@ require '../lib/database/database.php';
  	 switch ($_GET['type']) {
  	 	case 'page':
  	 		return $ajax->newPage($_POST['data']);
+ 	 		break;
+
+ 	 	case 'variable':
+ 	 		return $ajax->newVariable($_POST['data']);
  	 		break;
  	 	
  	 	default:
