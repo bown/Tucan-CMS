@@ -1,0 +1,14 @@
+{
+    "tucan": {
+    	"title": "Tucan CMS",
+        "version": "1.2",
+        "backend": "admin",
+        "debug": "true",
+        "ga": "UA-XXXXX-X",
+        "whitelabel": "@jakebown1",
+        "whitelabel_url": "http://jakebown.com",
+        "site_base": "/git/blocks/",
+        "fe_base": "app/resources/frontend",
+        "be_base": "app/resources/backend"
+    }
+}

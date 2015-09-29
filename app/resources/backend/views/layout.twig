@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Tucan CMS</title>
+        <link rel="stylesheet" type="text/css" href="{{tucan.site_base}}/{{tucan.be_base}}/css/font.css">
+        <link rel="stylesheet" type="text/css" href="{{tucan.site_base}}/{{tucan.be_base}}/css/ionicons.min.css">
+        <link rel="stylesheet" type="text/css" href="{{tucan.site_base}}/{{tucan.be_base}}/css/blocks.css">
+    </head>
+    <body>
+    {% if user %}
+    	<header>
+    		<ul>
+    			<li><a class="logo"><img width="31" height="23" src="{{tucan.site_base}}{{tucan.fe_base}}/img/tucan.png"/></a></li>
+    			{% for nav, url in navigation %}
+    				<li><a class="link" href="{{tucan.site_base}}{{tucan.backend}}{{url}}">{{nav}}</a></li>
+    			{% endfor %}
+    			<li class="right"><a href="">Logout</a></li>
+    			<li class="right"><a href="">Homepage</a></li>
+    		</ul>
+    	</header>
+    {% endif %}
+    	<section class="blocks-container">
+        {% block body %}{% endblock %}
+        </section>
+
+        <footer>
+            <div class="inner">
+            	<p>
+                    Tucan CMS {{tucan.version}} - made with love by <a target="_blank" href="{{tucan.whitelabel_url}}">{{tucan.whitelabel}}</a>
+                    <img src="{{tucan.site_base}}/{{tucan.be_base}}/img/tucan.png" width="32" height="24"/>
+                </p>
+            </div>
+        </footer>
+
+        <script type="text/javascript" src="{{tucan.site_base}}/{{tucan.be_base}}/js/jquery.js"></script>
+        <script type="text/javascript" src="{{tucan.site_base}}/{{tucan.be_base}}/js/jquery.ui.js"></script>
+        <script type="text/javascript" src="{{tucan.site_base}}/{{tucan.be_base}}/js/jsplumb.js"></script>
+        <script type="text/javascript" src="{{tucan.site_base}}/{{tucan.be_base}}/js/page.js"></script>
+        <script type="text/javascript" src="{{tucan.site_base}}/{{tucan.be_base}}/js/vars.js"></script>
+    </body>
+</html>

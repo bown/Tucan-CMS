@@ -1,0 +1,267 @@
+html,
+body {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Open sans', sans-serif; }
+
+header {
+  width: 100%;
+  height: 50px;
+  background: #445A71; }
+  header ul {
+    margin: 0;
+    padding: 0 25px;
+    list-style-type: none; }
+    header ul li {
+      vertical-align: middle;
+      display: inline-block;
+      float: left;
+      margin: 0 10px; }
+      header ul li.right {
+        float: right; }
+      header ul li a {
+        line-height: 50px;
+        color: #fff;
+        font-size: 12px;
+        text-decoration: none; }
+        header ul li a.logo {
+          position: relative;
+          top: 15px;
+          font-weight: 100;
+          font-size: 18px; }
+
+span.notification {
+  display: block;
+  background: #aaa;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px; }
+  span.notification.error {
+    background: #e74c3c; }
+  span.notification.success {
+    background: #2ecc71; }
+  span.notification.hidden {
+    display: none; }
+  span.notification .inner {
+    display: block;
+    padding: 10px; }
+
+section {
+  padding: 10px 0; }
+  section.blocks-container {
+    padding: 0 20px; }
+  section.col-6 {
+    display: inline-block;
+    width: 50%;
+    float: left; }
+    section.col-6 .inner {
+      padding: 0 10px; }
+      section.col-6 .inner .component-config {
+        display: none; }
+        section.col-6 .inner .component-config.active {
+          display: block; }
+        section.col-6 .inner .component-config .form-item {
+          margin: 10px;
+          position: relative; }
+          section.col-6 .inner .component-config .form-item input {
+            border: 0;
+            padding: 5px;
+            margin: 5px 10px;
+            width: 95%; }
+      section.col-6 .inner ul.page-canvas {
+        padding: 10px;
+        width: 98%;
+        border: 2px dashed #ddd;
+        font-size: 12px;
+        border-radius: 5px;
+        background: #fcfcfc; }
+        section.col-6 .inner ul.page-canvas li {
+          list-style-type: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          position: relative;
+          z-index: 99; }
+          section.col-6 .inner ul.page-canvas li.block {
+            color: #aaa;
+            width: 100%;
+            height: 40px;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 40px;
+            text-align: center;
+            text-transform: uppercase;
+            background: #eee;
+            border-radius: 2px;
+            border: 1px solid #ddd;
+            margin: 0 0 10px 0;
+            position: relative; }
+            section.col-6 .inner ul.page-canvas li.block i {
+              position: absolute;
+              left: 10px;
+              top: 14px; }
+            section.col-6 .inner ul.page-canvas li.block:last-child {
+              margin: 0; }
+            section.col-6 .inner ul.page-canvas li.block.locked {
+              cursor: not-allowed; }
+              section.col-6 .inner ul.page-canvas li.block.locked i {
+                display: none; }
+      section.col-6 .inner a.save-item,
+      section.col-6 .inner button.save-item,
+      section.col-6 .inner button.add-item,
+      section.col-6 .inner a.add-item {
+        cursor: pointer;
+        font-size: 12px;
+        padding: 5px 15px;
+        margin: 10px 0 0 0;
+        color: #fff;
+        background: #445A71;
+        border: 1px solid #445A71;
+        display: inline-block;
+        text-decoration: none; }
+        section.col-6 .inner a.save-item.m-r-10,
+        section.col-6 .inner button.save-item.m-r-10,
+        section.col-6 .inner button.add-item.m-r-10,
+        section.col-6 .inner a.add-item.m-r-10 {
+          margin-right: 10px; }
+        section.col-6 .inner a.save-item.p-l-10,
+        section.col-6 .inner button.save-item.p-l-10,
+        section.col-6 .inner button.add-item.p-l-10,
+        section.col-6 .inner a.add-item.p-l-10 {
+          margin: 10px 0 5px 10px; }
+        section.col-6 .inner a.save-item.right,
+        section.col-6 .inner button.save-item.right,
+        section.col-6 .inner button.add-item.right,
+        section.col-6 .inner a.add-item.right {
+          float: right; }
+        section.col-6 .inner a.save-item:hover, section.col-6 .inner a.save-item:focus,
+        section.col-6 .inner button.save-item:hover,
+        section.col-6 .inner button.save-item:focus,
+        section.col-6 .inner button.add-item:hover,
+        section.col-6 .inner button.add-item:focus,
+        section.col-6 .inner a.add-item:hover,
+        section.col-6 .inner a.add-item:focus {
+          background: #fff;
+          border: 1px solid #445A71;
+          color: #445A71; }
+      section.col-6 .inner .form-item {
+        padding: 10px 5px 5px 0px;
+        border: 1px solid #C4CBD1;
+        border-radius: 2px;
+        position: relative;
+        margin-bottom: 10px; }
+        section.col-6 .inner .form-item.validate {
+          border-color: #e74c3c; }
+        section.col-6 .inner .form-item span.required {
+          position: absolute;
+          top: 9px;
+          right: 15px;
+          color: #e74c3c; }
+        section.col-6 .inner .form-item.new-component:first-child {
+          display: none; }
+        section.col-6 .inner .form-item:hover, section.col-6 .inner .form-item:focus {
+          border-color: #445A71; }
+        section.col-6 .inner .form-item label {
+          font-size: 10px;
+          padding: 0 10px;
+          text-transform: uppercase;
+          font-weight: 600;
+          display: block; }
+        section.col-6 .inner .form-item .select {
+          position: relative;
+          display: inline-block; }
+          section.col-6 .inner .form-item .select select {
+            margin: 10px 0 5px 10px;
+            display: block;
+            border: 1px solid #C4CBD1;
+            appearance: none;
+            -webkit-appearance: none;
+            border-radius: 0;
+            padding: 8px 35px 8px 10px;
+            outline: 0; }
+          section.col-6 .inner .form-item .select i.chevron {
+            position: absolute;
+            top: 21px;
+            font-size: 12px;
+            right: 9px; }
+        section.col-6 .inner .form-item small {
+          padding: 0px 10px;
+          display: block;
+          margin: 10px 0;
+          font-size: 10px;
+          color: #999; }
+          section.col-6 .inner .form-item small a {
+            color: #445A71; }
+        section.col-6 .inner .form-item .add-new {
+          border: 0;
+          margin: 0;
+          padding: 8px 10px 5px 10px;
+          border-radius: 4px; }
+      section.col-6 .inner h2 {
+        font-size: 20px;
+        padding: 0 10px 0 0; }
+        section.col-6 .inner h2 a.add-new {
+          position: relative;
+          top: 8px;
+          float: right;
+          font-weight: 500;
+          font-size: 14px;
+          color: #445A71; }
+      section.col-6 .inner p {
+        font-size: 13px;
+        letter-spacing: 0.2; }
+      section.col-6 .inner input {
+        outline: 0; }
+        section.col-6 .inner input.add-new {
+          padding: 10px;
+          width: 100%;
+          border: 1px solid #C4CBD1;
+          border-radius: 2px;
+          font-size: 13px; }
+      section.col-6 .inner ul.list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0; }
+        section.col-6 .inner ul.list li {
+          padding: 0 0 15px 5px;
+          border-bottom: 1px solid #eee; }
+          section.col-6 .inner ul.list li p {
+            font-weight: 600;
+            margin-bottom: 0; }
+            section.col-6 .inner ul.list li p a {
+              color: inherit;
+              text-decoration: none; }
+              section.col-6 .inner ul.list li p a:hover {
+                color: #445A71; }
+          section.col-6 .inner ul.list li small {
+            color: #999;
+            font-size: 10px; }
+            section.col-6 .inner ul.list li small i {
+              font-size: 20px; }
+            section.col-6 .inner ul.list li small span {
+              float: right; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0; }
+  footer .inner {
+    padding: 15px 30px; }
+    footer .inner img {
+      position: relative;
+      float: right;
+      opacity: 0.3; }
+    footer .inner p {
+      color: #aaa;
+      font-size: 11px; }
+      footer .inner p a {
+        color: #999; }

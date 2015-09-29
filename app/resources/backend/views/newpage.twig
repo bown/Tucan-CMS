@@ -1,0 +1,95 @@
+{% extends "layout.twig" %}
+{% block body %}
+
+	<span class="notification hidden">
+		<span class="inner"></span>
+	</span>
+
+	<section class="col-6">
+		<div class="inner">
+			<h2>Create a Page</h2>
+
+			<form method="post" action="create">
+				<div class="form-item required">
+					<label>Page Title</label>
+					<input {% if name != false %}value="{{name}}"{% endif %}name="title" data-for="title" class="add-new" type="text" placeholder="New page name.." required/>
+					<span title="Required field" class="required">*</span>
+				</div>
+
+				<div class="form-item required">
+					<label>Location</label>
+					<input name="page" {% if page != false %}value="{{get}}"{% endif %}data-for="page" class="add-new" type="text" placeholder="/page" required/>
+					<span title="Required field" class="required">*</span>
+				</div>
+
+				<div class="form-item required">
+					<label>Published</label>
+					<div class="select">
+						<select name="published" data-for="published">
+							<option {% if published != false and published == "draft" %}selected{% endif %}value="draft">Draft</option>
+							<option {% if published != false and published == "published" %}selected{% endif %}value="published">Published</option>
+						</select>
+						<i class="chevron ion-chevron-down"></i>
+					</div>
+					<span title="Required field" class="required">*</span>
+				</div>
+				<div class="components">
+					<div class="form-item new-component">
+						<label>Component<span></span></label>
+						<small>You can <a href="">create a new component here</a></small>
+						<div class="select">
+							{% if components %}
+							<select data-for="component" name="component" class="select-component">
+								<option value="noval">Select one..</option>
+								{% for c in components %}
+									<option value="{{c.slug}}">{{c.title}}</option>
+								{% endfor %}
+							</select>
+								{% else %}
+							<select disabled>
+									<option>You have 0 components</option>
+							</select>
+							{% endif %}
+							<i class="chevron ion-chevron-down"></i>
+						</div>
+						{% if components %}
+							
+								{% for c in components %}
+									<div class="component-config for-{{c.slug}}">
+									{% for f,v in c.fields %}
+										{% if v.type == "text" %} 
+											<div class="form-item placeholder-component {% if v.required %}required{% endif %}">
+												<label>{{f}} {% if v.limit.max %}({{v.limit.max}}{% if v.limit.min %} - {{v.limit.min}}{% endif %} chars){% endif %}</label>
+												<input data-for="{{f|lower}}" name="{{c.slug}}" {% if v.limit.max %}min="{{v.limit.max}}"{% endif %} {% if v.limit.max %}max="{{v.limit.max}}"{% endif %} type="text" placeholder="Text.." {% if v.required %}required{% endif %} />
+												{% if v.required %}<span title="Required field" class="required">*</span>{% endif %}
+											</div>
+										{% endif %}
+									{% endfor %}
+									</div>
+								{% endfor %}
+
+
+						{% endif %}
+
+					</div>
+				</div>
+
+				<a href="#" class="save-item save-form right">Save</a> 
+				<a href="#" class="save-item add-component right m-r-10">Add Component</a> 
+
+			</form>
+		</div>
+	</section>
+
+	<section class="col-6">
+		<div class="inner">
+			<h2>Sort Components</h2>
+			<ul class="page-canvas">
+				<li class="block header locked"><i class="ion-navicon-round"></i> <span>Header</span></li>
+				<span></span>
+				<li class="block footer locked"><i class="ion-navicon-round"></i> <span>Footer</span></li>
+			</ulx>
+		</div>
+	</section>
+
+{% endblock %}
