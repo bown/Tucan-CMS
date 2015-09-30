@@ -13,13 +13,37 @@
     <![endif]-->
   </head>
   <body>
+
+    <!-- ParallaxScene -->
+    <div class="ParallaxScene" id="scene">
+      <div class="layer" data-depth="0.30">
+        <img class="cloud" src="http://pngimg.com/upload/cloud_PNG4.png"/>
+        <img class="cloud" src="http://www.asteroidmission.org/wp-content/themes/osiris/public_assets/images/cloud-6.png"/>
+      </div>
+      <div class="layer font" data-depth="0.20">
+        <h1>TUCAN CMS</h1>
+        <img class="tucan-logo" src="stylesheets/tucan.png" alt="Tucan CMS" height="30" width="auto"/>
+        <h4>
+          BUILT FOR FRONTEND DEVELOPERS
+        </h4>
+      </div>
+      <div class="layer sun" data-depth="0.15">
+        <div class="sun"></div>
+      </div>
+      <div class="layer mountains" data-depth="0.12">
+        <div class="mountain"></div>
+      </div>
+      <div class="layer posts" data-depth="0.11">        
+        <div class="posts"></div>
+      </div>
+    </div>
+    <!-- ParallaxScene -->
     <div class="wrapper">
       <header>
-        <span class="tucan-logo">
-          <img class="tucan-logo" src="stylesheets/tucan.png" alt="Tucan CMS" height="57" width="76"/>
-        </span>
         <h1>Tucan</h1>
-        <p>Component based CMS built for front-end developers.</p>
+        <p>
+          Component based CMS built for front-end developers.
+        </p>
         <ul>
           <li><a href="https://github.com/jakerb/Tucan-CMS/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/jakerb/Tucan-CMS/tarball/master">Read <strong>Docs</strong></a></li>
@@ -66,7 +90,7 @@
 &lt;!-- heroHeader --&gt;
 </pre>
 
-<p></p>
+<p>It's always good practice to add comments into your components both above and below so that you can easily debu </p>
 
 <h3>
 <a id="so-pages" class="anchor" href="#so-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>So, Pages.</h3>
@@ -93,6 +117,9 @@
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="javascripts/parallax.js"></script>
+    <script src="javascripts/app.js"></script>
     <script src="javascripts/scale.fix.js"></script>
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
