@@ -5,6 +5,7 @@ vendor/*
 app/resources/backend/layout/cache/*
 composer.lock
 vendor/*
+readme/*
 *.db
 
 
