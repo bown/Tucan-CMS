@@ -3,6 +3,8 @@ app/db/*
 vendor/*
 *.sass-cache/
 app/resources/backend/layout/cache/*
+composer.lock
+vendor/*
 *.db
 
 
