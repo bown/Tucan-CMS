@@ -1,19 +1,18 @@
 {% extends "layout/layout.twig"%}
 
 {% block body %}
-	<h1><small><input required required="" class="page-title no-input" placeholder="Page Title" type="text"></small></h1>
-	<p>/<input placeholder="endpoint" type="text" class="endpoint-title no-input" readonly></p>
+	{% if layout != false %}
+	<form method="post" action="save">
+	<h1><small><input required required="" name="page_title" class="page-title no-input" placeholder="Page Title" type="text"></small></h1>
+	<p>/<input placeholder="endpoint" name="page_endpoint" type="text" class="endpoint-title no-input" readonly></p>
 		
 	<br/>
-
 
 	<!-- Add Component -->
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-12">
-					{% if layout != false %}
-						<form method="post" action="publish">
 						<h5>Create Page <small>(using layout '{{layout.title}}')</small></h5>
 						{% for layoutComponent in layout.components %}
 							<br/>

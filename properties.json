@@ -10,8 +10,8 @@
 		"backend": "admin",
 		"debugging": "true",
 		"directory": {
-			"home": "//localhost/git/evany",
-			"base": "//localhost/git/evany/app"
+			"home": "//localhost/git/blocks",
+			"base": "//localhost/git/blocks/app"
 		},
 		"analytics": {
 			"google": "UA-XXXXX-X"

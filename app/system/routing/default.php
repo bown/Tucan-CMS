@@ -43,23 +43,6 @@
 
 	});
 
-	//Pages
-	$route->respond("/". $backend . "/pages", function ($request, $response, $service, $app) {
-		
-		$app->isUser;
-		extension::includeAll();
-
-	    $render = new render();
-	    $config = new config();
-	    $db = new db("pages");
-	    $layouts = new db("layouts");
-	    $all = $db->convert($db->all());
-	    $layouts = $layouts->convert($layouts->all());
-
-	    $render->render("admin.pages", ["system" => $config->system, "pages" => $all, "layouts" => $layouts]);
-
-	});
-
 	//Layouts
 	$route->respond("/". $backend . "/layouts", function ($request, $response, $service, $app) {
 		
@@ -117,8 +100,22 @@
 				$response->redirect("create?success=".$post->title);
 			}
 		}
+	});
 
+	//Pages
+	$route->respond("/". $backend . "/pages", function ($request, $response, $service, $app) {
+		
+		$app->isUser;
+		extension::includeAll();
 
+	    $render = new render();
+	    $config = new config();
+	    $db = new db("pages");
+	    $layouts = new db("layouts");
+	    $all = $db->convert($db->all());
+	    $layouts = $layouts->convert($layouts->all());
+
+	    $render->render("admin.pages", ["system" => $config->system, "pages" => $all, "layouts" => $layouts]);
 
 	});
 
@@ -143,6 +140,28 @@
 
 	    $render->render("admin.pages.create", ["system" => $config->system, "layout" => $layout, "components" => $all, "json" => $json]);
 
+	});
+
+	//Pages: Save
+	$route->respond("/". $backend . "/pages/save", function ($request, $response, $service, $app) {
+		
+		$app->isUser;
+		extension::includeAll();
+		$config = new config();
+
+		$post = (object)$_POST;
+
+
+		if(!$post->page_title) {
+			$response->redirect("create?error=1");
+		} else {
+			$page = new page();
+			$publish = $page->publish($_POST);
+
+			if($publish) {
+				$response->redirect("create?success=".$post->page_title);
+			}
+		}
 	});
 
 	//Components

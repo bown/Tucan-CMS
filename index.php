@@ -26,6 +26,7 @@
  require 'app/system/classes/extension.php';
  require 'app/system/classes/component.php';
  require 'app/system/classes/layout.php';
+ require 'app/system/classes/page.php';
  require 'app/system/application/config.php';
 
  //Classes
