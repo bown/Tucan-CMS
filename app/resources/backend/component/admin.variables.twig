@@ -1,0 +1,41 @@
+{% extends "layout/layout.twig" %}
+
+{% block body %}
+	<h1><small>Variables</small></h1>
+		
+	<br/>
+
+	<form method="POST">
+		<div class="well row">
+			<div class="col-md-5">
+				<input type="text" required required="required" name="key" class="form-control" placeholder="Key">
+			</div>
+			<div class="col-md-5">
+				<input type="text" required required="required" name="value" class="form-control" placeholder="Value">
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-primary btn-block">Add</button>
+			</div>
+		</div>
+	</form>
+	
+	<ul class="pages regular-list">
+		{% for key, val in variables %}
+		<li>
+			<h4>{{key}} <a href="?delete={{key}}" class="pull-right">&times;</a></h4>
+			<p><code>{{val}}</code> <kbd class="pull-right">&#123;&#123;variables.{{key}}&#125;&#125;</kbd></p>
+			<hr/>
+		</li>
+		{% endfor %}
+	</ul>
+
+{% endblock %}
+
+{% block sidebar %}
+	<h5 class="m-t-50"><strong>About</strong></h5>
+	<p class="muted">Variables are key value pairs that can be used in the frontend of your site. They can be used to set the title
+	of your site, specify an element class, path to a stylesheet or anything else.</p>
+	<hr>
+	<h5><strong>Note</strong></h5>
+	<p class="muted">Variables are available globally throughout the frontend of your site, do <strong>not</strong> store sensitive information as variables.</p>
+{% endblock %}

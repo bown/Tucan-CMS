@@ -1,36 +1,37 @@
 <?php
-session_start();
+/*
+ * Evany CMS
+ * @version 1.0.1
+ * @author Jake Bown <jakebown@gmail.com>
+ */
 
-/* Blocks
- * A CMS for front end developers
- * Made with love by Jake Bown
- * twitter.com/@jakebown1
- * jakebown@gmail.com
-*/
+ //Secure Sessions
+ session_start();
 
-//Config
-require 'app/config/self.php';
-require 'app/config/globals.php';
 
-//Core
-require 'vendor/autoload.php';
-require 'app/lib/database/database.php';
+ //Composer 
+ require 'app/vendor/autoload.php';
 
-//Dependencies
-require 'app/class/database.php';
-require 'app/class/template.php';
-require 'app/class/errors.php';
+ //Helpers
+ require 'app/system/helper/klein.php';
 
-$db = new database("vars");
-$globals = new globals();
-$globals->globals($db->selectAll());
+ //Libraries
+ require 'app/system/library/flatdb.php';
+ require 'app/system/library/sessions.php';
 
-//Setup Klein
-$route = new \Klein\Klein();
+ //Config
+ require 'app/system/classes/config.php';
+ require 'app/system/classes/user.php';
+ require 'app/system/classes/database.php';
+ require 'app/system/classes/extension.php';
+ require 'app/system/classes/component.php';
+ require 'app/system/classes/layout.php';
+ require 'app/system/application/config.php';
 
-//Routes
-require 'app/routes/default.php';
+ //Classes
+ require 'app/system/classes/twig.php';
 
-//And, go!
-$route->dispatch();
+ //Routes
+ require 'app/system/routing/default.php';
+
 ?>

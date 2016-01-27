@@ -1,0 +1,56 @@
+{% extends "layout/layout.twig"%}
+
+{% block body %}
+	{% if get.error %}
+	<div class="alert alert-danger" role="alert"> 
+	<strong>Oh snap!</strong> You didn't fill out a field when submitting, please retry.</div>
+	{% endif %}
+	{% if get.success %}
+	<div class="alert alert-success" role="alert"> 
+	<strong>Success!</strong> '{{get.success}}' was successfully created.</div>
+	{% endif %}
+	<form action="save" method="post" class="save-layout">
+		<h1><small><input required required="" name="title" class="page-title no-input" placeholder="Layout Name" type="text"></small></h1>
+		<br/>
+
+
+		<!-- Add Component -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-6">
+						<h5>Your Components <small>(click to add)</small></h5>
+						<div class="list-group component-list">
+						{% for component in components %}
+						  <a href="#" data-name="{{component.title}}" class="list-group-item">{{component.title|capitalize}} <span class="pull-right">Add</span></a>
+						 {% endfor %}
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h5>Page Layout <small>(Drag to change ordering)</small></h5>
+						<div class="panel panel-default">
+						  <div class="panel-heading">Header</div>
+						  <div class="panel-body">
+						  	<ul class="list-group page-layout"></ul>
+						  </div>
+						  <div class="panel-footer">Footer</div>
+						</div>
+						<hr>
+						<h5>Custom JS</h5>
+						<div class="custom-js" data-language="javascript"></div>
+						<hr>
+						<h5>Custom CSS</h5>
+						<div class="custom-css" data-language="css"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+{% endblock %}
+
+{% block sidebar %}
+	<a class="btn btn-primary mt-20 save-layout" href="#">Save</a>
+	<hr>
+	<h5><strong>Note</strong></h5>
+	<p class="muted">Components are defined by their names, if you name two the same, they will overwrite each other.</p>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layout/layout.twig" %}
+
+{% block body %}
+	<h1><small>Components</small></h1>
+		
+	<br/>
+
+	{% if components == false %}
+		<h3 class="muted"><i class="ion-android-cancel"></i> No Components</h3>
+	{% else %}
+	<ul class="pages regular-list">
+		{% for component in components %}
+			{% if component.title != false %}
+				<li>
+					<h4>{{component.title}} <a href="?delete={{component.id}}" class="pull-right">&times;</a></h4>
+					<p>Uses the template <code>{{component.filename}}</code></p>
+					<hr/>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+{% endif %}
+
+	<!-- Modal -->
+		<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		  	<form method="POST" id="new-component">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title modal-input" id="myModalLabel">
+			        	<input name="title" type="text" required placeholder="Component Title">
+			        	<input name="filename" class="pull-right" type="text" required placeholder="Template Filename">
+			        </h4>
+			      </div>
+			      <div class="modal-body">
+			      	<div class="alert alert-danger component-error hidden" role="alert"> <strong>Oh snap!</strong> <span>...</span></div>
+			      <table class="table table-hover field-table"> 
+					<thead> 
+						<tr> 
+							<th>Field Name</th> 
+							<th>Type</th> 
+						</tr> 
+					</thead> 
+					<tbody class="field-body"> 
+						<tr class="field-first"> 
+							<td>
+								<input name="fieldname-0" type="text" class="form-control field-name" placeholder="Header" required></td> 
+							<td>
+								<select name="fieldtype-0" class="form-control field-value" required>
+									<option value="input">Input</option>
+									<option value="textarea">Textarea</option>
+									<option value="boolean">Boolean</option>
+									<option value="integer">Integer</option>
+									<option value="comma">Comma Seperated Array</option>
+								</select>
+							</td> 
+						</tr>  
+					</tbody> 
+				</table>
+			      </div>
+			      <div class="modal-footer">
+			      	<p class="muted"><small>To add a comma seperated array, seperate the title and array with a vertical pipe |</small></p>
+			      	<img class="eloader" src="{{system.evany.directory.base}}/resources/backend/img/light.gif" height="50" width="50" alt="">
+			      	<button type="button" class="add-field pull-left btn btn-default">Add Field</button>
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			        <button type="submit" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+		    </form>
+		  </div>
+		</div>
+
+
+{% endblock %}
+
+{% block sidebar %}
+	<h5 class="m-t-50"><strong>Create</strong></h5>
+	<a data-toggle="modal" href="#" data-target="#create">Create Component</a>
+	<hr>
+	<h5><strong>Note</strong></h5>
+	<p class="muted">Components are defined by their names, if you name two the same, they will overwrite each other.</p>
+	<p class="muted">
+	You cannot modify a component after it has been created as pages using this component can be modified unintentionally.</p>
+{% endblock %}

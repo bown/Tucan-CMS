@@ -1,0 +1,97 @@
+{% extends "layout/layout.twig"%}
+
+{% block body %}
+	<h1><small><input required required="" class="page-title no-input" placeholder="Page Title" type="text"></small></h1>
+	<p>/<input placeholder="endpoint" type="text" class="endpoint-title no-input" readonly></p>
+		
+	<br/>
+
+
+	<!-- Add Component -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-12">
+					{% if layout != false %}
+						<form method="post" action="publish">
+						<h5>Create Page <small>(using layout '{{layout.title}}')</small></h5>
+						{% for layoutComponent in layout.components %}
+							<br/>
+							<h4>Component: {{layoutComponent}}</h4>
+							<div class="row">
+							{% if attribute(components, layoutComponent) != false %}
+								{% for form in attribute(components, layoutComponent) %}
+									<div class="col-md-4" style="min-height:100px;">
+										<label> {{form.name|capitalize}} {% if form.required %}*{% endif %}
+									
+											<!-- Input -->
+											{% if form.type == 'input' %}
+											<input name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="text" class="form-control">
+											{% endif %}
+
+											<!-- Textarea -->
+											{% if form.type == 'textarea' %}
+											<textarea name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} class="form-control"></textarea>
+											{% endif %}
+
+											<!-- Select -->
+											{% if form.type == 'comma' %}
+											{% if form.value != false %}
+											<select style="min-width:120px;" name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} class="form-control">
+												{% for value in form.value %}
+													<option value="{{value}}">{{value}}</option>
+												{% endfor %}
+											</select>
+											{% else %}
+											<p><small>No values given in 'select' field</small></p>
+											{% endif %}
+											{% endif %}
+											
+											<!-- Checkbox -->
+											{% if form.type == 'boolean' %}
+											 <div class="checkbox">
+										        <label>
+										          <input name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="checkbox" class="form-control">
+										        </label>
+										      </div>
+											{% endif %}
+
+											<!-- Integer -->
+											{% if form.type == 'integer' %}
+											<input name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="number" class="form-control">
+											{% endif %}
+
+
+										</label>
+									</div>
+								{% endfor %}
+							{% endif %}
+							</div>
+							<hr>
+							
+						{% endfor %}
+					{% else %}
+					<p>Layout not found.</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		var tucanComponents = {{json|raw}};
+	</script>
+	<hr>
+
+{% endblock %}
+
+{% block sidebar %}
+	{% if layout != false %}
+		<button type="submit" class="btn btn-primary mt-20">Publish</button>
+		<a href="{{system.evany.directory.home}}/{{system.evany.backend}}/pages" class="btn btn-default mt-20">Cancel</a>
+		</form>
+		<hr>
+	{% endif %}
+	<h5><strong>Note</strong></h5>
+	<p class="muted">Components are defined by their names, if you name two the same, they will overwrite each other.</p>
+{% endblock %}

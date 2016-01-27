@@ -1,0 +1,180 @@
+@import "colors";
+@import "metrics";
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	overflow-x: hidden;
+	background: $grey;
+}
+
+img.eloader {
+	visibility: hidden;
+	
+	&.shown {
+		visibility: visible;
+	}
+}
+
+.align {
+	&.left {
+		text-align: left;
+	}
+
+	&.right {
+		text-align: right;
+	}
+
+	&.center {
+		text-align: center;
+	}
+}
+
+.popover {
+	width: 275px;
+	max-width: 275px;
+	max-height: 500px;
+	overflow-y: scroll;
+}
+
+.well {
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	background: rgba(0,0,0,0.03);
+}
+
+.form-control,
+.btn {
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.page-layout li {
+	height: 55px;
+	line-height: 32px;
+}
+
+.btn-primary {
+	background: $navy;
+	border-color: $navy;
+}
+
+.m-t-25 {
+	margin-top:25px;
+}
+
+.m-t-50 {
+	margin-top: 50px;
+}
+
+.muted {
+	color: rgba(0,0,0,0.4);
+}
+
+input {
+	&.page-element {
+		width: 243px;
+	}
+}
+
+.login-form {
+
+
+	input {
+
+		&:hover,
+		&:active,
+		&:focus {
+			outline: 0;
+		}
+
+		&[type="password"] {
+			margin-top: -1px;
+		}
+	}
+}
+
+.modal-input {
+	input {
+		padding: 0;
+		font-size: 14px;
+		text-indent: 5px;
+		outline: 0;
+		border: 0;
+
+		&.pull-right {
+			top: 4px;
+			position: relative;
+		}
+	}
+}
+
+header {
+	&#navigation {
+		background: $navy;
+		margin-bottom: 20px;
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+
+			li {
+				display: inline-block;
+				padding: 15px 5px;
+
+				a {
+					color: #fff;
+					font-weight: 400;
+					font-size: 12px;
+					letter-spacing: 0.3px;
+				}
+
+				&.logo {
+					img {
+						width: 30px;
+						vertical-align: top;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+input {
+	&.field-name {
+		text-transform: lowercase;
+	}
+
+	&.no-input {
+		border: none;
+		background: none;
+
+		&:hover,
+		&:active,
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+ul.regular-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+
+	&.sidebar {
+		margin-top: 25px;
+	}
+
+	h4 > a {
+		color: inherit;
+	}
+}

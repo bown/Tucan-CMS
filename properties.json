@@ -1,0 +1,23 @@
+{
+	"evany": {
+		"title": "Tucan",
+		"codename": "evany",
+		"version": "1.0.1",
+		"author": {
+			"name": "Jake Bown",
+			"email": "jakebown@gmail.com"
+		},
+		"backend": "admin",
+		"debugging": "true",
+		"directory": {
+			"home": "//localhost/git/evany",
+			"base": "//localhost/git/evany/app"
+		},
+		"analytics": {
+			"google": "UA-XXXXX-X"
+		},
+		"login": {
+			"show_reset": "true"
+		}
+	}
+}

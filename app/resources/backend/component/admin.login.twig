@@ -1,0 +1,23 @@
+{% extends "layout/login.twig" %}
+
+{% block body %}
+	<img class="mt-100 mb-30" src="{{system.evany.directory.base}}/resources/backend/img/logoDark@x2.png" width="80" alt="{{system.evany.title}} Login">
+	<br/>
+	
+	{% if get.error %}
+		<div class="alert alert-danger component-error" role="alert"> Incorrect Details!</div>
+	{% endif %}
+
+
+	<form class="login-form" method="post" action="auth">
+		<input type="text" class="form-control" name="username" placeholder="Username">
+		<input type="password" class="form-control" name="password" placeholder="Password">
+		<br/>
+		<button type="submit" class="btn btn-block btn-primary">Login</button>
+	</form>
+	{% if system.evany.login.show_reset == "true" %}
+		<br/>
+		<p>Forgotten? <a href="#">Reset Password</a></p>
+	{% endif %}
+
+{% endblock %}

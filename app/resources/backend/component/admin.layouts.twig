@@ -1,0 +1,37 @@
+{% extends "layout/layout.twig"%}
+
+{% block body %}
+	<h1><small>Layouts</small></h1>
+		
+	<br/>
+
+	<ul class="pages regular-list">
+	{% if layouts == false %}
+		<li>
+			<h4><a href="#">No Layout</a></h4>
+			<p>You haven't created any layouts yet :(</p>
+			<hr/>
+		</li>
+	{% else %}
+		{% for layout in layouts %}
+		<li>
+			<h4>{{layout.title}} <a href="?delete={{layout.title}}" class="pull-right">&times;</a></h4>
+			{% if layout.components != false %}
+				<p>This layout uses 
+				{% for component in layout.components %}
+				<code>{{component}}</code>{% if not loop.last %},{% else %}.{% endif %}
+				{% endfor %}
+				</p>
+			{% endif %}
+			<hr/>
+		</li>
+		{% endfor %}
+	{% endif %}
+	</ul>
+
+{% endblock %}
+
+{% block sidebar %}
+	<h5 class="m-t-50"><strong>Create</strong></h5>
+	<a href="layouts/create">Create Layout</a>
+{% endblock %}
