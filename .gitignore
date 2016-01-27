@@ -3,7 +3,6 @@ app/db/*
 vendor/*
 *.sass-cache/
 app/resources/backend/layout/cache/*
-readme/*
 vendor/*
 readme/*
 *.db
