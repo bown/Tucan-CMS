@@ -21,6 +21,18 @@
 
 		function render($layout, $array, $output = "backend") {
 			if($output == "backend") {
+
+				$active = explode('/', $_SERVER['REQUEST_URI']);
+
+				$active = isset($active[2]) ? $active[2] : false;
+
+				if(strpos($active, "?") !== false) {
+					$active = explode('?', $active)[0];
+				}
+
+				$array['activePage'] = strtolower($active);
+
+
 				echo $this->backend->render("component/" . $layout . ".twig", $array);
 			} else {
 				echo $this->frontend->render("component/" . $layout . ".twig", $array);

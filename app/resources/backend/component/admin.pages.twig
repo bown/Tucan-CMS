@@ -1,43 +1,56 @@
 {% extends "layout/layout.twig"%}
 
 {% block body %}
-	<h1><small>Pages</small></h1>
-		
-	<br/>
+	<h1 class="title">Pages</h1>
+	<h2 class="subtitle">
+	  A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+	</h2>
 
-	<ul class="pages regular-list">
 		{% if pages == false %}
-		<li>
-			<h4>No Pages</h4>
-			<p>You haven't created any pages yet :(</p>
-			<hr/>
-		</li>
+		<div class="notification">
+		  <span class="delete"></span>
+			<strong>No Pages.</strong> You have no pages here.
+		</div>
 		{% else %}
 			{% for page in pages %}
-			<li>
-				<h4>{{page.title}} <a href="?delete={{page.title}}" class="pull-right">&times;</a></h4>
-				{% if page.components != false %}
-					<p>This pages uses the layout {{page.layout}}.</p>
-				{% endif %}
-				<hr/>
-			</li>
+
+			<article class="media">
+				<div class="media-content">
+					<div class="content">
+					<p>
+					  <div class="columns">
+					  <div class="column is-9">
+					  	<strong>{{page.title}}</strong><br/>
+					  	This page uses the layout <strong>{{page.layout}}</strong>
+					  </div>
+					  <div class="column is-3">
+					  	<small><a href="?delete={{page.title}}" class="button is-primary is-outlined">Delete</a></small>
+					  </div>
+					  </div>
+					</p>
+				</div>
+			</div>
+			</article>
 			{% endfor %}
 		{% endif %}
-	</ul>
 
 {% endblock %}
 
 {% block sidebar %}
 	{% if layouts != false %}
-	<h5 class="m-t-50"><strong>Create</strong></h5>
+	<p class="subtitle is-5">Create Page</p>
 	<form action="pages/create" method="get">
-	<select class="form-control" name="layout">
-		{% for layout in layouts %}
-		<option value="{{layout.title}}">{{layout.title}}</option>
-		{% endfor %}
-	</select>
-	<br/>
-	<button type="submit" class="pull-right btn-link p-0" type="submit">Create Page</button>
+	
+	<p class="control">
+      <span class="select">
+        <select name="layout">
+        {% for layout in layouts %}
+          <option value="{{layout.title}}">{{layout.title}}</option>
+        {% endfor %}
+        </select>
+      </span>
+    </p>
+	<button type="submit" class="button is-success">Create Layout</button>
 	</form>
 	{% else %}
 	<br/>

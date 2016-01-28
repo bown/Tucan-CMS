@@ -1,12 +1,22 @@
 {% include "layout/header.twig" %}
 {% include "component/header.twig" %}
 
-    <div class="row">
-		<div class="col-md-7 col-md-offset-1">
-			{% block body %}{% endblock %}
+    <div class="columns page-content">
+    	<div class="column is-1"></div>
+		<div class="column is-7">
+			<section class="section">
+				<div class="container">
+					{% block body %}{% endblock %}
+				</div>
+			</section>
 		</div>
-		<div class="col-md-2 col-md-offset-1">
-			{% block sidebar %}{% endblock %}
+		<div class="column is-1"></div>
+		<div class="column">
+			<section class="section">
+				<div class="container">
+					{% block sidebar %}{% endblock %}
+				</div>
+			</section>
 		</div>
 	</div>
 {% include "layout/footer.twig" %}

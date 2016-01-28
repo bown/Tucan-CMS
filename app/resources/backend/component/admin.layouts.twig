@@ -1,37 +1,50 @@
 {% extends "layout/layout.twig"%}
 
 {% block body %}
-	<h1><small>Layouts</small></h1>
-		
-	<br/>
 
-	<ul class="pages regular-list">
+	<h1 class="title">Layouts</h1>
+	<h2 class="subtitle">
+	  A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+	</h2>
+
+
 	{% if layouts == false %}
-		<li>
-			<h4><a href="#">No Layout</a></h4>
-			<p>You haven't created any layouts yet :(</p>
-			<hr/>
-		</li>
+		<div class="notification">
+		  <span class="delete"></span>
+			<strong>No Layouts.</strong> You have no layouts here.
+		</div>
 	{% else %}
 		{% for layout in layouts %}
-		<li>
-			<h4>{{layout.title}} <a href="?delete={{layout.title}}" class="pull-right">&times;</a></h4>
-			{% if layout.components != false %}
-				<p>This layout uses 
-				{% for component in layout.components %}
-				<code>{{component}}</code>{% if not loop.last %},{% else %}.{% endif %}
-				{% endfor %}
+		
+		<article class="media">
+			<div class="media-content">
+				<div class="content">
+				<p>
+				  <div class="columns">
+				  <div class="column is-9">
+				  	<strong>{{layout.title}}</strong><br/>
+				  	{% if layout.components != false %}
+				  	This layout uses 
+					{% for component in layout.components %}
+						<code>{{component}}</code>{% if not loop.last %},{% else %}.{% endif %}
+					{% endfor %}
+				{% endif %}
+				  </div>
+				  <div class="column is-3">
+				  	<small><a href="?delete={{layout.title}}" class="button is-primary is-outlined">Delete</a></small>
+				  </div>
+				  </div>
 				</p>
-			{% endif %}
-			<hr/>
-		</li>
+			</div>
+		</div>
+		</article>
+
 		{% endfor %}
 	{% endif %}
-	</ul>
 
 {% endblock %}
 
 {% block sidebar %}
-	<h5 class="m-t-50"><strong>Create</strong></h5>
-	<a href="layouts/create">Create Layout</a>
+	<p class="subtitle is-5">Create Layout</p>
+	<a href="layouts/create" class="button is-success">Create Layout</a>
 {% endblock %}

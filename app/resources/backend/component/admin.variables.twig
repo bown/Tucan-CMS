@@ -1,33 +1,50 @@
 {% extends "layout/layout.twig" %}
 
 {% block body %}
-	<h1><small>Variables</small></h1>
+	<h1 class="title">Variables</h1>
+	<h2 class="subtitle">
+	  A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+	</h2>
 		
 	<br/>
 
 	<form method="POST">
-		<div class="well row">
-			<div class="col-md-5">
-				<input type="text" required required="required" name="key" class="form-control" placeholder="Key">
+		<div class="columns">
+			<div class="column is-5 col-md-5">
+			<p class="control">
+			  <input class="input" type="text" required required="required" name="key" placeholder="Key">
+			</p>
 			</div>
-			<div class="col-md-5">
-				<input type="text" required required="required" name="value" class="form-control" placeholder="Value">
+			<div class="column is-6 col-md-6">
+			<p class="control">
+			  <input class="input" type="text" required required="required" name="value" placeholder="Value">
+			</p>
 			</div>
-			<div class="col-md-2">
-				<button class="btn btn-primary btn-block">Add</button>
+			<div class="column is-1 col-md-1">
+				<button class="button is-success">Add</button>
 			</div>
 		</div>
 	</form>
-	
-	<ul class="pages regular-list">
-		{% for key, val in variables %}
-		<li>
-			<h4>{{key}} <a href="?delete={{key}}" class="pull-right">&times;</a></h4>
-			<p><code>{{val}}</code> <kbd class="pull-right">&#123;&#123;variables.{{key}}&#125;&#125;</kbd></p>
-			<hr/>
-		</li>
-		{% endfor %}
-	</ul>
+	<hr>
+	{% for key, val in variables %}
+	<article class="media">
+			<div class="media-content">
+				<div class="content">
+				<p>
+				  <div class="columns">
+				  <div class="column is-11">
+					<strong>{{val}}</strong> ({{key}})
+					<p> <code>&#123;&#123;variables.{{key}}&#125;&#125;</code></p>
+				  </div>
+				  <div class="column is-1">
+				  	<small><a href="?delete={{key}}" class="button is-primary is-outlined">Delete</a></small>
+				  </div>
+				  </div>
+				</p>
+			</div>
+		</div>
+		</article>
+	{% endfor %}
 
 {% endblock %}
 

@@ -7,6 +7,7 @@
 
 	 var createModal = "#create";
 	 var addField = "button.add-field";
+	 var removeField = "button.remove-field";
 	 var pageTitle = "input.page-title";
 	 var endPointTitle = "input.endpoint-title";
 	 var formSubmit = "form#new-component";
@@ -31,6 +32,21 @@
 
 	 	},
 
+	 	openModal:function() {
+	 		$('a[data-toggle="modal"]').on('click', function(e) {
+	 			e.preventDefault();
+	 			var modal = $(this).data('target');
+	 			$(modal).removeClass('hidden');
+
+	 		});
+
+	 		$('a[data-dismiss="modal"]').on('click', function(e) {
+	 			e.preventDefault();
+	 			var modal = $(this).data('target');
+	 			$(modal).addClass('hidden');
+	 		});
+	 	},
+
 	 	createComponent:function() {
 	 		var that = this;	
 
@@ -42,6 +58,12 @@
 	 			/* Update Field Names */
 	 			$(fieldBody).find('.field:last-child input[name="fieldname-0"]').attr('name', 'fieldname-' + fieldCount);
 	 			$(fieldBody).find('.field:last-child select[name="fieldtype-0"]').attr('name', 'fieldtype-' + fieldCount);
+	 		});
+
+	 		$('body').on('click', removeField, function(e) {
+	 			e.preventDefault();
+	 			fieldCount--;
+	 			$(e.currentTarget).closest('tr').remove();
 	 		});
 	 	},
 
@@ -83,9 +105,10 @@
 	 			comma: "<select data-required class='page-element form-control'>[data]</select>"
 	 		};
 	 		
-	 		$(componentList + ' a').on('click', function() {
+	 		$(componentList + ' a').on('click', function(e) {
+	 			e.preventDefault();
 	 			var title = $(this).data('name');
-	 			$(pageLayout).append('<li class="list-group-item">'+ $(this).data('name') +' <button class="btn btn-default pull-right component-delete">&times;</button><input type="hidden" value="'+$(this).data('name')+'" name="comp'+$(this).data('name')+counter+'"/></li>');
+	 			$(pageLayout).append('<li class="list-group-item">'+ $(this).data('name') +' <button class="button is-small component-delete">&times;</button><input type="hidden" value="'+$(this).data('name')+'" name="comp'+$(this).data('name')+counter+'"/></li>');
 	 			content = "";
 	 			counter++;
 	 			that.deleteComponent();
@@ -147,7 +170,7 @@
 	 						console.log(res.response.text);
 
 	 					} else {
-	 						$(createModal).modal('hide');
+	 						$(createModal).addClass('hidden');
 	 						setTimeout(function() {
 	 								location.reload();
 	 						}, 600);
@@ -165,9 +188,9 @@
 	 	app.submitComponent();
 	 	app.pageName();
 	 	app.sortPage();
-	 	app.pageTooltip();
 	 	app.pageAppend();
 	 	app.saveLayout();
 	 	app.createCustom();
+	 	app.openModal();
 	 });
 
