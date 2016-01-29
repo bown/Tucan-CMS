@@ -13,18 +13,17 @@
 		</div>
 		{% else %}
 			{% for page in pages %}
-
 			<article class="media">
 				<div class="media-content">
 					<div class="content">
 					<p>
 					  <div class="columns">
 					  <div class="column is-9">
-					  	<strong>{{page.title}}</strong><br/>
-					  	This page uses the layout <strong>{{page.layout}}</strong>
+					  	<strong>{{page}}</strong><br/>
+					  	This page uses the layout <strong>{{page}}</strong>
 					  </div>
 					  <div class="column is-3">
-					  	<small><a href="?delete={{page.title}}" class="button is-primary is-outlined">Delete</a></small>
+					  	<small><a href="?delete={{page}}" class="button is-primary is-outlined">Delete</a></small>
 					  </div>
 					  </div>
 					</p>

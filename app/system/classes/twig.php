@@ -32,7 +32,6 @@
 
 				$array['activePage'] = strtolower($active);
 
-
 				echo $this->backend->render("component/" . $layout . ".twig", $array);
 			} else {
 				echo $this->frontend->render("component/" . $layout . ".twig", $array);

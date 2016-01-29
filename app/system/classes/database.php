@@ -76,10 +76,16 @@
 			return $data;
 		}
 
-		function convert($assoc) {
+		function convert($assoc, $level = 1) {
 			$converted = [];
 		    foreach($assoc as $key => $val) {
-		    	$converted[] = $assoc[$key];
+		    	if($level > 1) {
+		    		if(!is_array($key)) {
+		    			$converted[] = $key;
+		    		}
+		    	} else {
+		    		$converted[] = $assoc[$key];
+		    	}
 		    }
 		    return $converted;
 		}

@@ -112,8 +112,12 @@
 	    $config = new config();
 	    $db = new db("pages");
 	    $layouts = new db("layouts");
-	    $all = $db->convert($db->all());
+	    $all = $db->convert($db->all(), 2);
 	    $layouts = $layouts->convert($layouts->all());
+
+	    if(isset($request->delete)) {
+	    	$db->delete($request->delete);
+	    }
 
 	    $render->render("admin.pages", ["system" => $config->system, "pages" => $all, "layouts" => $layouts]);
 
