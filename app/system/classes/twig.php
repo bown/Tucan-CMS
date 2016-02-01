@@ -22,6 +22,8 @@
 		function render($layout, $array, $output = "backend") {
 			if($output == "backend") {
 
+				$extensions = new extensions();
+
 				$active = explode('/', $_SERVER['REQUEST_URI']);
 
 				$active = isset($active[2]) ? $active[2] : false;
@@ -31,6 +33,7 @@
 				}
 
 				$array['activePage'] = strtolower($active);
+				$array['extensions'] = $extensions->listAll();
 
 				echo $this->backend->render("component/" . $layout . ".twig", $array);
 			} else {

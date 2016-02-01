@@ -1,23 +1,46 @@
 {% extends "layout/login.twig" %}
 
 {% block body %}
-	<img class="mt-100 mb-30" src="{{system.evany.directory.base}}/resources/backend/img/logoDark@x2.png" width="80" alt="{{system.evany.title}} Login">
-	<br/>
 	
 	{% if get.error %}
 		<div class="alert alert-danger component-error" role="alert"> Incorrect Details!</div>
 	{% endif %}
 
+	<section class="hero is-fullheight is-success tucan-gradient is-bold">
 
-	<form class="login-form" method="post" action="auth">
-		<input type="text" class="form-control" name="username" placeholder="Username">
-		<input type="password" class="form-control" name="password" placeholder="Password">
-		<br/>
-		<button type="submit" class="btn btn-block btn-primary">Login</button>
-	</form>
-	{% if system.evany.login.show_reset == "true" %}
-		<br/>
-		<p>Forgotten? <a href="#">Reset Password</a></p>
-	{% endif %}
+	  <div class="hero-content">
+	    <div class="container">
+	      <h3 class="title is-2">
+	        <a href="/documentation/layout/hero/">
+	          <span class="icon is-large">
+	            <i class="fa fa-arrows-v"></i>
+	          </span>
+	          Welcome back to <strong>{{system.evany.site.title}}</strong>
+	        </a>
+	      </h3>
+	      <h4 class="subtitle is-4">Proudly powered by Tucan CMS</h4>
+	      <form class="login-form" method="post" action="auth">
+	      		<div class="columns">
+	      			<div class="column is-2"></div>
+	      			<div class="column is-3"><input autocomplete="off" type="text" class="input" name="username" placeholder="Username"></div>
+	      			<div class="column is-3"><input autocomplete="off" type="password" class="input" name="password" placeholder="Password"></div>
+	      			<div class="column is-1"><button type="submit" class="button is-success">Login</button></div>
+	      		</div>
+			</form>			
+	    </div>
+	  </div>
+	  {% if system.evany.login.show_reset == "true" %}
+	  <div class="hero-footer">
+	    <div class="container">
+	      <div class="tabs is-centered">
+	        <ul>
+	          <li><a class="">Forgotten Password?</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </div>
+	  {% endif %}
+
+	</section>
 
 {% endblock %}

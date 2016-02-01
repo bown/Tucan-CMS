@@ -23,8 +23,14 @@
 		 * vars outside of here.
 		 */
 
+		
+
 		$render = new render();
 	    $config = new config();
+	    //$extension = new extension();
+
+	    echo str_replace("/" . $config->system->evany->backend, false, $_SERVER['REQUEST_URI']);
+
 	    $render->render("admin.error", ["system" => $config->system]);
 	    		die();
 		

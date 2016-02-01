@@ -5,18 +5,32 @@
  * @author Jake Bown <jakebown@gmail.com>
  */
 	
- class extension {
+ class extensions {
 
- 	static function includeAll() {
+ 	function listAll() {
  		$db = new db("extensions");
- 		$extend = new extend();
-    	$extensions = $db->convert($db->all());
-    	foreach($extensions as $extension) {
-    		if(file_exists("app/system/extensions/$extension")) {
-    			require "app/system/extensions/$extension";
-    		}
-    	}
+ 		return $db->all();
  	}
+ }
+
+ // static function includeAll() {
+ 	// 	$db = new db("extensions");
+ 	// 	$extend = new extend();
+  //   	$extensions = $db->convert($db->all());
+  //   	foreach($extensions as $extension) {
+  //   		if(file_exists("app/system/extensions/$extension")) {
+  //   			require "app/system/extensions/$extension";
+  //   		}
+  //   	}
+ 	// }
+
+ class tucan {
+
+ 	static function register($func = false, $endpoint = false, $title = false) {
+
+ 	}
+
+
  }
 
  class extend {

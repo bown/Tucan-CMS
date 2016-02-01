@@ -1,0 +1,107 @@
+{% extends "layout/layout.twig"%}
+
+{% block body %}
+
+	<h1 class="title">Users</h1>
+	<h2 class="subtitle">
+	  A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+	</h2>
+	
+
+	{% if users == false %}
+		<div class="notification">
+		  <span class="delete"></span>
+			<strong>No Users.</strong> You have no users here.
+		</div>
+	{% else %}
+		{% for user in users %}
+		
+		<article class="media">
+			<div class="media-content">
+				<div class="content">
+				<p>
+				  <div class="columns">
+				  <div class="column is-11">
+				  	<strong>{{user.username}} {% if me.username == user.username %}<small>(me)</small>{% endif %}</strong><br/>
+				  	This user has the role of <code>{{user.role}}</code>.
+				  </div>
+				  <div class="column is-1">
+				  	<small><a href="?delete={{layout.title}}" class="button is-primary is-outlined">Edit</a></small>
+				  	{% if count > 1 %}
+				  	<small><a href="?delete={{user.username}}" class="button is-danger is-outlined">Delete</a></small>
+				  	{% endif %}
+				  </div>
+				  </div>
+				</p>
+			</div>
+		</div>
+		</article>
+
+		{% endfor %}
+	{% endif %}
+
+	<!-- Modal -->
+		<div class="modal hidden" id="user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		  	<form method="POST" id="new-user">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h4 class="modal-title modal-input" id="myModalLabel">
+			        </h4>
+			      </div>
+
+			      <div class="modal-body">
+				      <div class="columns">
+				        	<div class="column is-3">
+				        		<p class="control">
+									<input name="username" class="input" type="text" required placeholder="Username">
+								</p>
+				        	</div>
+				        	<div class="column is-3">
+				        		<p class="control">
+									<input name="password" class="input" type="password" required placeholder="Password">
+								</p>
+				        	</div>
+				        	<div class="column is-3">
+				        		<p class="control">
+									<input name="email" class="input" type="email" required placeholder="Email Address">
+								</p>
+				        	</div>
+				        	<div class="column is-2">
+				        		<p class="control">
+									<input name="some" class="input" type="text" required placeholder="Template Filename">
+								</p>
+				        	</div>
+				        </div>
+				        <br/>
+			      </div>
+			      <div class="modal-footer">
+			      	<div class="columns">
+			      		<div class="column is-10">
+			      			<div class="columns">
+			      				<div class="column is-2">
+			      					<button type="button" class="generate-password button is-info">Generate Password</button>
+			      				</div>
+			      				<div class="column is-2">
+			      					<input type="text" class="input" placeholder="Generated Password">
+			      				</div>
+			      			</div>
+							
+			      		</div>
+			      		<div class="column is-2">
+			      			<a class="button" href="#" data-target="#user" data-dismiss="modal">Cancel</a>
+			        		<button type="submit" class="button is-success">Create User</button>
+			      		</div>
+			      	</div>
+			      </div>
+			    </div>
+		    </form>
+		  </div>
+		</div>
+
+{% endblock %}
+
+{% block sidebar %}
+	<p class="subtitle is-5">Create User</p>
+	<a data-toggle="modal" href="#" data-target="#user" class="button is-success">Create User</a>
+{% endblock %}

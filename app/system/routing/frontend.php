@@ -5,7 +5,16 @@
  * @author Jake Bown <jakebown@gmail.com>
  */
 
-$route->respond('/[:page]', function($request) {
+$route->respond('/[:page]', function($request, $response, $service, $app) {
+    $config = new config();
+    $backend = $config->system->evany->backend;
+
+    if($request->page == $backend) {
+        header('Location: $backend/pages');
+        return;
+    }
+
+
     $db = new database("page");
     $page = $db->select($request->page);
     if(!is_array($page)) {

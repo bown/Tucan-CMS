@@ -9,20 +9,34 @@
 	<br/>
 
 	{% if components == false %}
-		<h3 class="muted"><i class="ion-android-cancel"></i> No Components</h3>
+		<div class="notification">
+		  <span class="delete"></span>
+			<strong>No Components.</strong> You have no components here.
+		</div>
 	{% else %}
-	<ul class="pages regular-list">
 		{% for component in components %}
-			{% if component.title != false %}
-				<li>
-					<h4>{{component.title}} <a href="?delete={{component.id}}" class="pull-right">&times;</a></h4>
-					<p>Uses the template <code>{{component.filename}}</code></p>
-					<hr/>
-				</li>
-			{% endif %}
+		
+		<article class="media">
+			<div class="media-content">
+				<div class="content">
+				<p>
+				  <div class="columns">
+				  <div class="column is-9">
+				  	<strong>{{component.title}}</strong><br/>
+				  	Uses the template <code>{{component.filename}}</code>
+				  </div>
+				  <div class="column is-3">
+				  	<small><a href="?delete={{component.id}}" class="button is-primary is-outlined">Delete</a></small>
+				  </div>
+				  </div>
+				</p>
+			</div>
+		</div>
+		</article>
+
 		{% endfor %}
-	</ul>
-{% endif %}
+	{% endif %}
+
 
 	<!-- Modal -->
 		<div class="modal hidden" id="create" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -101,8 +115,8 @@
 {% endblock %}
 
 {% block sidebar %}
-	<h5 class="m-t-50"><strong>Create</strong></h5>
-	<a data-toggle="modal" href="#" data-target="#create">Create Component</a>
+	<p class="subtitle is-5">Create Component</p>
+	<a data-toggle="modal" href="#" data-target="#create" class="button is-success">Create Component</a>
 	<hr>
 	<h5><strong>Note</strong></h5>
 	<p class="muted">Components are defined by their names, if you name two the same, they will overwrite each other.</p>

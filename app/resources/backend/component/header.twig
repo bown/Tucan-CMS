@@ -17,7 +17,7 @@
     </span>
     <div id="header-menu" class="header-right header-menu">
       <span class="header-item">
-        <a class="is-active" href="/documentation/overview/">Logout</a>
+        <a class="is-active" href="{{system.evany.directory.home}}/{{system.evany.backend}}/logout">Logout</a>
       </span>
       <span class="header-item">
         
@@ -35,10 +35,10 @@
   <div class="hero-content">
     <div class="container">
       <p class="title">
-        Tucan CMS
+        {{system.evany.site.title}}
       </p>
       <p class="subtitle">
-        Version 1.0.3 <strong>(Evany)</strong>
+        {{system.evany.site.domain}}
       </p>
     </div>
   </div>
@@ -65,6 +65,14 @@
           <li {% if activePage == 'users' %}class="is-active"{% endif %}>
             <a href="{{system.evany.directory.home}}/{{system.evany.backend}}/users">Users</a>
           </li>
+  
+        <!-- Extensions -->
+        {% for key, extension in extensions %}
+            <li {% if activePage == key %}class="is-active"{% endif %}>
+            <a href="{{system.evany.directory.home}}/{{system.evany.backend}}/users">{{key}}</a>
+          </li>
+        {% endfor %}
+
         </ul>
       </div>
     </nav>

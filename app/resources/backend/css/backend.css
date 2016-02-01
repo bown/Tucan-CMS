@@ -2299,6 +2299,7 @@ table {
 body, html {
   background: #fff; }
 
+section.hero.is-success.is-bold.tucan-gradient,
 .hero.is-info.is-bold {
   background: linear-gradient(270deg, #5274ca, #65cbdf, #509fd3);
   background-size: 600% 600%;
@@ -2394,11 +2395,31 @@ code {
   code.CodeFlask__code {
     background: #fff; }
 
+p.endpoint-p {
+  display: inline-block;
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 15px; }
+  p.endpoint-p input {
+    display: inline-block;
+    text-indent: 5px; }
+  p.endpoint-p:before {
+    content: '/';
+    position: absolute;
+    top: 7px;
+    z-index: 2; }
+
 input.no-input,
 textarea.no-input {
   padding: 0;
   margin: 0;
   border: none;
   box-shadow: none; }
+  input.no-input.endpoint-title,
+  textarea.no-input.endpoint-title {
+    position: relative; }
+input.textarea-min,
+textarea.textarea-min {
+  min-height: 30px; }
 
 /*# sourceMappingURL=backend.css.map */

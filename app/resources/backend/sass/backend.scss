@@ -20,14 +20,13 @@ body,html {
 	background: #fff;
 }
 
-.hero {
-	&.is-info.is-bold {
-		background: linear-gradient(270deg, #5274ca, #65cbdf, #509fd3);
-		background-size: 600% 600%;
-		-webkit-animation: backgroundWave 30s ease infinite;
-		-moz-animation: backgroundWave 30s ease infinite;
-		animation: backgroundWave 30s ease infinite;
-	}
+section.hero.is-success.is-bold.tucan-gradient,
+.hero.is-info.is-bold {
+	background: linear-gradient(270deg, #5274ca, #65cbdf, #509fd3);
+	background-size: 600% 600%;
+	-webkit-animation: backgroundWave 30s ease infinite;
+	-moz-animation: backgroundWave 30s ease infinite;
+	animation: backgroundWave 30s ease infinite;
 }
 
 .page-content {
@@ -157,6 +156,28 @@ code {
 	}
 }
 
+p {
+	&.endpoint-p {
+		display: inline-block;
+		padding-left: 14px;
+		position: relative;
+		margin-bottom: 15px;
+
+		input {
+			display: inline-block;
+			text-indent: 5px;
+		}
+		&:before {
+			content: '/';
+			position: absolute;
+			top: 7px;
+			z-index: 2;
+
+
+		}
+	}
+}
+
 input,
 textarea {
 	&.no-input {
@@ -164,6 +185,14 @@ textarea {
 		margin: 0;
 		border: none;
 		box-shadow: none;
+
+		&.endpoint-title {
+			position: relative;
+		}
+	}
+
+	&.textarea-min {
+		min-height: 30px;
 	}
 
 }
