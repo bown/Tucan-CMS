@@ -1,0 +1,17 @@
+{% extends "layout/layout.twig" %}
+
+{% block body %}
+	{% if success %}
+		<h1 class="title">Success!</h1>
+		<h2 class="subtitle">
+		  Your new layout has been successfully created.
+		</h2>
+	{% else %}
+		<h1 class="title">Oh no!</h1>
+		<h2 class="subtitle">
+		  Something went wrong when creating your layout.
+		</h2>
+	{% endif %}
+	
+
+{% endblock %}

@@ -21,23 +21,23 @@
 								{% for form in attribute(components, layoutComponent) %}
 									<div class="column" style="min-height:100px;">
 										<p class="control">
-										<h6 class="subtitle is-6">{{form.name|capitalize}} {% if form.required %}*{% endif %}</h6>
+										<h6 class="subtitle is-6">{{form.name|capitalize}} {% if form.required and form.type != 'boolean' %}*{% endif %}</h6>
 									
 											<!-- Input -->
 											{% if form.type == 'input' %}
-											<input name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="text" class="input">
+											<input name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="text" class="input">
 											{% endif %}
 
 											<!-- Textarea -->
 											{% if form.type == 'textarea' %}
-											<textarea name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} class="textarea-min textarea"></textarea>
+											<textarea name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} class="textarea-min textarea"></textarea>
 											{% endif %}
 
 											<!-- Select -->
 											{% if form.type == 'comma' %}
 											{% if form.value != false %}
 											<span class="select">
-												<select style="min-width:120px;" name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} class="select">
+												<select style="min-width:120px;" name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} class="select">
 													{% for value in form.value %}
 														<option value="{{value}}">{{value}}</option>
 													{% endfor %}
@@ -52,14 +52,14 @@
 											{% if form.type == 'boolean' %}
 											 <div class="checkbox">
 										        <label>
-										          <input name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="checkbox" class="input">
+										          <input name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" type="checkbox" class="input">
 										        </label>
 										      </div>
 											{% endif %}
 
 											<!-- Integer -->
 											{% if form.type == 'integer' %}
-											<input name="{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="number" class="input">
+											<input name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="number" class="input">
 											{% endif %}
 										</p>
 									</div>

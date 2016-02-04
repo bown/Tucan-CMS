@@ -19,9 +19,11 @@
 	 var pageLayout = ".page-layout";
 	 var pageComponent = ".page-component";
 	 var componentList = ".component-list";
+	 var componentListLink = "a.add-component";
 	 var saveLayoutButton = "a.save-layout";
 	 var saveLayoutForm = "form.save-layout";
 	 var fieldCount = 0;
+	 var componentList = [];
 
 	 var copy = $(fieldFirst).html();
 	 copy = "<tr class=\"field\">" + copy + "</tr>";
@@ -105,21 +107,28 @@
 	 			comma: "<select data-required class='page-element form-control'>[data]</select>"
 	 		};
 	 		
-	 		$(componentList + ' a').on('click', function(e) {
+	 		$(componentListLink).on('click', function(e) {
 	 			e.preventDefault();
 	 			var title = $(this).data('name');
-	 			$(pageLayout).append('<li class="list-group-item">'+ $(this).data('name') +' <button class="button is-small component-delete">&times;</button><input type="hidden" value="'+$(this).data('name')+'" name="comp'+$(this).data('name')+counter+'"/></li>');
-	 			content = "";
-	 			counter++;
-	 			that.deleteComponent();
+	 			$(this).addClass('hidden');
+	 			if(!componentList[title]) {
+	 				componentList[title] = true;
+		 			$(pageLayout).append('<li class="list-group-item">'+ $(this).data('name') +' <button class="button is-small component-delete">&times;</button><input type="hidden" value="'+$(this).data('name')+'" name="comp'+$(this).data('name')+counter+'"/></li>');
+		 			content = "";
+		 			counter++;
+		 			that.deleteComponent(title);
+		 		}
 	 		});
 	 	},
 
-	 	deleteComponent:function() {
+	 	deleteComponent:function(title) {
 	 		var that = this;
 	 		$('button.component-delete').on('click', function(e) {
 	 			e.preventDefault();
+	 			var component = $(this).parent().find('input[type="hidden"]').val();
 	 			$(this).parent().remove();
+	 			componentList[title] = false;
+	 			$('a.list-group-item[data-name="'+component+'"]').removeClass('hidden');
 	 		});
 	 	},
 

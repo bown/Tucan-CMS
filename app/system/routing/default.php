@@ -59,12 +59,14 @@
 		    $render = new render();
 		    $config = new config();
 		    $db = new db("users");
+
+		    if(isset($request->delete) && count($db->all()) > 1) {
+		    	$db->delete($request->delete);
+		    }
+
 		    $all = $db->convert($db->all());
 		    $count = count($all);
 
-		    if(isset($request->delete) && count($all) > 1) {
-		    	$db->delete($request->delete);
-		    }
 
 		    $render->render("admin.users", ["system" => $config->system, "users" => $all, "count" => $count, "me" => $_SESSION['user']]);
 
@@ -79,11 +81,13 @@
 		    $render = new render();
 		    $config = new config();
 		    $db = new db("layouts");
-		    $all = $db->convert($db->all());
 
 		    if(isset($request->delete)) {
 		    	$db->delete($request->delete);
 		    }
+
+		    $all = $db->convert($db->all());
+
 
 		    $render->render("admin.layouts", ["system" => $config->system, "layouts" => $all]);
 
@@ -113,20 +117,22 @@
 		$route->respond("/layouts/save", function ($request, $response, $service, $app) {
 			
 			$app->isUser;
-			
+
+			$render = new render();
 			$config = new config();
+			$success = 0;
 
 			$post = (object)$_POST;
 
-			if(!$post->title) {
-				$response->redirect("create?error=1");
-			} else {
+			if($post->title) {
 				$layout = new layout();
 				$publish = $layout->publish($_POST);
 				if($publish) {
-					$response->redirect("create?success=".$post->title);
+					$success = 1;
 				}
 			}
+
+			$render->render("admin.layouts.save", ["system" => $config->system, "get" => $_GET, "success" => $success]);
 		});
 
 		//Pages
@@ -137,13 +143,15 @@
 		    $render = new render();
 		    $config = new config();
 		    $db = new db("pages");
-		    $layouts = new db("layouts");
-		    $all = $db->convert($db->all(), 2);
-		    $layouts = $layouts->convert($layouts->all());
 
 		    if(isset($request->delete)) {
 		    	$db->delete($request->delete);
 		    }
+
+		    $layouts = new db("layouts");
+		    $all = $db->convert($db->all(), 2);
+		    $layouts = $layouts->convert($layouts->all());
+
 
 		    $render->render("admin.pages", ["system" => $config->system, "pages" => $all, "layouts" => $layouts]);
 
@@ -169,9 +177,6 @@
 		   	if(isset($request->edit)) {
 		   		$layouts = new db("components");
 		   		$edit = new db("pages");
-		   		print_r($edit->all());
-		   		echo "<br/><br/><br/>";
-		   		print_r($layouts->get('Testy'));
 		   	}
 
 		    $json = json_encode($all);
@@ -184,21 +189,24 @@
 		$route->respond("/pages/save", function ($request, $response, $service, $app) {
 			
 			$app->isUser;
+
+			$success = false;
 			
+			$render = new render();
 			$config = new config();
 
 			$post = (object)$_POST;
-
 
 			if(!$post->page_title) {
 				$response->redirect("create?error=1");
 			} else {
 				$page = new page();
 				$publish = $page->publish($_POST);
-
 				if($publish) {
-					$response->redirect("create?success=".$post->page_title);
+					$success = true;
 				}
+
+				$render->render("admin.pages.save", ["system" => $config->system, "get" => $_GET, "success" => $success]);
 			}
 		});
 
@@ -211,14 +219,15 @@
 		    $render = new render();
 		    $config = new config();
 		    $db = new db("components");
-		    $all = $db->convert($db->all());
-
 
 		    //Delete Component
 		    if(isset($request->delete)) {
 		    	$component = new component();
 		    	$component->delete($request->delete);
 		    }
+
+		    $all = $db->convert($db->all());
+
 
 		    $render->render("admin.components", ["system" => $config->system, "components" => $all]);
 

@@ -1,10 +1,21 @@
 {% extends "layout/login.twig" %}
 
 {% block body %}
-	<img class="mt-100 mb-30" src="{{system.evany.directory.base}}/resources/backend/img/tucan.png" width="80" alt="Evany">
-	<br/>
-	<h4>Oh no!</h4>
-	<p>This page does not exist, please <a href="/">go back</a>.</p>
+	<section class="hero is-fullheight is-success tucan-gradient is-bold">
 
+	  <div class="hero-content">
+	    <div class="container">
+	      <h3 class="title is-2">
+	        <a href="#">
+	          <span class="icon is-large">
+	            <i class="fa fa-arrows-v"></i>
+	          </span>
+	          Oh no! This page doesn't exist.
+	        </a>
+	      </h3>
+	      <h4 class="subtitle is-4">Please <a style="color:#fff;" href="{{system.evany.directory.home}}">go back</a>.</h4>			
+	    </div>
+	  </div>
+	</section>
 
 {% endblock %}

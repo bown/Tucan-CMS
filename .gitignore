@@ -1,11 +1,11 @@
 app/vendor/*
-app/db/*
+
 vendor/*
 *.sass-cache/
 app/resources/backend/layout/cache/*
 vendor/*
 readme/*
-*.db
+
 
 
 app/koala-config.json

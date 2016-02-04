@@ -5,17 +5,20 @@
  * @author Jake Bown <jakebown@gmail.com>
  */
 
-$route->respond('/[:page]', function($request, $response, $service, $app) {
+$route->respond('/12', function($request, $response, $service, $app) {
     $config = new config();
     $backend = $config->system->evany->backend;
 
     if($request->page == $backend) {
-        header('Location: $backend/pages');
+        $response->redirect("$backend/pages");
         return;
+    } else {
+        echo isset($request->trailing);
+        die($request->page);
     }
 
 
-    $db = new database("page");
+    $db = new database("pages");
     $page = $db->select($request->page);
     if(!is_array($page)) {
 

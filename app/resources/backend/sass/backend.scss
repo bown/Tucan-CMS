@@ -20,6 +20,10 @@ body,html {
 	background: #fff;
 }
 
+.hidden {
+	display: none;
+}
+
 section.hero.is-success.is-bold.tucan-gradient,
 .hero.is-info.is-bold {
 	background: linear-gradient(270deg, #5274ca, #65cbdf, #509fd3);
@@ -78,6 +82,8 @@ section.hero.is-success.is-bold.tucan-gradient,
 
 	&.hidden {
 		transition: all 0.5s ease;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
 		
 		.modal-footer,
 		.modal-dialog {
@@ -114,6 +120,8 @@ section.hero.is-success.is-bold.tucan-gradient,
 		background: #fff;
 		border-top: 1px solid #eee;
 		transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-webkit-transition: all 0.5s ease;
 	}
 
 	.modal-dialog {
@@ -130,6 +138,8 @@ section.hero.is-success.is-bold.tucan-gradient,
 		left: 0;
 		z-index: 10;
 		transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
+		-webkit-transition: all 0.5s ease;
 	}
 
 	&:after {
@@ -143,6 +153,8 @@ section.hero.is-success.is-bold.tucan-gradient,
 		content: '';
 		pointer-events: none;
 		transition: all 0.5s ease;
+		-webkit-transition: all 0.5s ease;
+		-moz-transition: all 0.5s ease;
 	}
 
 }

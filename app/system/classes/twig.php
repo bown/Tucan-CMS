@@ -37,7 +37,14 @@
 
 				echo $this->backend->render("component/" . $layout . ".twig", $array);
 			} else {
-				echo $this->frontend->render("component/" . $layout . ".twig", $array);
+				$db = new db("variables");
+				$array['variables'] = $db->all();
+				if(strpos($layout, ".twig") !== FALSE) {
+					$layout = $layout;
+				} else {
+					$layout = $layout . ".twig";
+				}
+				return $this->frontend->render("component/" . $layout, $array);
 			}
 		}
 

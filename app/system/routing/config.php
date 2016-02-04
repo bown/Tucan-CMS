@@ -21,19 +21,34 @@
 		/*
 		 * HttpError doesn't have access to
 		 * vars outside of here.
-		 */
-
-		
+		 */		
 
 		$render = new render();
 	    $config = new config();
-	    //$extension = new extension();
+	    $build = new page();
+	    $pages = new db("pages");
 
-	    echo str_replace("/" . $config->system->evany->backend, false, $_SERVER['REQUEST_URI']);
+	    $request = $_SERVER['REQUEST_URI'];
+	    $found = false;
 
-	    $render->render("admin.error", ["system" => $config->system]);
-	    		die();
-		
+	    foreach($pages->all() as $page) {
+	    	$component = array_keys($page)[0];
+	    	if($page["endpoint"] != "/") {
+	    		//Add slash to URL
+	    		$page["endpoint"] = "/" . $page["endpoint"];
+	    	}
+	    	if($page["endpoint"] == $request) {
+	    		$found = $page;
+	    	}
+	    }
+
+	    if($found) {
+	    	$build->render($found);
+	    } else {
+	    	$render->render("admin.error", ["system" => $config->system]);
+	    }
+
+	    die();		
 	});
 
 ?>
