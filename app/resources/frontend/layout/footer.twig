@@ -1,0 +1,25 @@
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+    <script src="{{config.directory.base}}/resources/frontend/js/parallax.js"></script>
+    <script src="{{config.directory.base}}/resources/frontend/js/app.js"></script>
+    <script src="{{config.directory.base}}/resources/frontend/js/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("{{variables.ga_key}}");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+          <script type="text/javascript">
+          $(document).ready(function() {
+            $('pre').each(function(i, block) {
+              hljs.highlightBlock(block);
+            });
+          });
+          </script>
+
+  </body>
+</html>

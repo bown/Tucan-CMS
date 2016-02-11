@@ -4,8 +4,8 @@
 		"codename": "evany",
 		"version": "1.0.1",
 		"site": {
-			"title": "My Awesome Site",
-			"domain": "awesomesite.com",
+			"title": "My Tucan Blog",
+			"domain": "tucanblog.com",
 			"language": "en"
 		},
 		"author": {

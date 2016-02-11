@@ -28,6 +28,7 @@
 	    $build = new page();
 	    $pages = new db("pages");
 
+
 	    $request = $_SERVER['REQUEST_URI'];
 	    $found = false;
 
@@ -41,6 +42,8 @@
 	    		$found = $page;
 	    	}
 	    }
+
+
 
 	    if($found) {
 	    	$build->render($found);

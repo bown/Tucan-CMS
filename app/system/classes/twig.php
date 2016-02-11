@@ -9,6 +9,8 @@
 
 		function __construct($be = "app/resources/backend/", $fe = "app/resources/frontend/") {
 
+			$this->be = $be;
+			$this->fe = $fe;
 			$this->backend = new Twig_Environment(new Twig_Loader_Filesystem($be), array(
 			    //'cache' => $be . 'layout/cache/',
 			));
@@ -17,6 +19,18 @@
 			    //'cache' => $fe . 'layout/cache/',
 			));
 
+		}
+
+		function exists($file, $febe) {
+			$dir = $this->be;
+			if($febe == "frontend") {
+				$dir = $this->fe;
+			}
+			if(file_exists($dir . "layout/" . $file)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		function render($layout, $array, $output = "backend") {
@@ -38,13 +52,17 @@
 				echo $this->backend->render("component/" . $layout . ".twig", $array);
 			} else {
 				$db = new db("variables");
+				$config = new config();
+
+				$array['config'] = $config->system->evany;	
+
 				$array['variables'] = $db->all();
 				if(strpos($layout, ".twig") !== FALSE) {
 					$layout = $layout;
 				} else {
 					$layout = $layout . ".twig";
 				}
-				return $this->frontend->render("component/" . $layout, $array);
+				return $this->frontend->render($layout, $array);
 			}
 		}
 

@@ -81,6 +81,8 @@
 			$title = $page['page'];
 			$endpoint = $page['endpoint'];
 			$variables = new db("variables");
+			$pages = new db("pages");
+			$headFoot = false;
 			$array = array();
 			$names = array();
 			$values = array();
@@ -109,12 +111,23 @@
 				$array = array_combine($names, $values);
 
 				$array["variables"] = $variables->all();
+				$array["pages"] = $pages->all();
 
 
-				$html .= $render->render($item['template'], $array, "frontend");
+				if($render->exists("header.twig", "frontend") && $render->exists("footer.twig", "frontend")) {
+					$headFoot = true;
+					$html .= $render->render("layout/header.twig", $array, "frontend");
+				}
+
+
+				$html .= $render->render("component/" . $item['template'], $array, "frontend");
+				if($headFoot) {
+					$html .= $render->render("layout/footer.twig", $array, "frontend");
+				}
 			}
 
 			echo $html;
+			die();
 		}
 
 	}

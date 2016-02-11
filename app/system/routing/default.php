@@ -152,7 +152,6 @@
 		    $all = $db->convert($db->all(), 2);
 		    $layouts = $layouts->convert($layouts->all());
 
-
 		    $render->render("admin.pages", ["system" => $config->system, "pages" => $all, "layouts" => $layouts]);
 
 		});
