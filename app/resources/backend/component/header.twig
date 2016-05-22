@@ -21,8 +21,8 @@
       </span>
       <span class="header-item">
         
-          <a class="button is-info is-outlined is-inverted" href="#">
-            Help
+          <a target="_blank" class="button is-info is-outlined is-inverted" href="{{system.evany.directory.home}}">
+            View Site
           </a>
         
       </span>
@@ -65,11 +65,10 @@
           <li {% if activePage == 'users' %}class="is-active"{% endif %}>
             <a href="{{system.evany.directory.home}}/{{system.evany.backend}}/users">Users</a>
           </li>
-  
         <!-- Extensions -->
         {% for key, extension in extensions %}
             <li {% if activePage == key %}class="is-active"{% endif %}>
-            <a href="{{system.evany.directory.home}}/{{system.evany.backend}}/users">{{key}}</a>
+            <a href="{{system.evany.directory.home}}/{{system.evany.backend}}/extension/{{key}}">{{key}}</a>
           </li>
         {% endfor %}
 

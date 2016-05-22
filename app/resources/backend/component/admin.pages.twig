@@ -3,7 +3,7 @@
 {% block body %}
 	<h1 class="title">Pages</h1>
 	<h2 class="subtitle">
-	  A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+	  Are build up of a <strong>layout</strong> and one or more <strong>components</strong>. Each page is rendered as a HTML page and served to the user.
 	</h2>
 
 		{% if pages == false %}
@@ -18,15 +18,15 @@
 					<div class="content">
 					<p>
 					  <div class="columns">
-					  <div class="column is-11">
-					  	<strong>{{page}}</strong><br/>
-					  	This is an active page on your website
+					  <div class="column is-7">
+					  	<strong>{{page.page}}</strong> {% if page.endpoint == '/' %}<small>(homepage)</small>{% endif %} <br/>
+					  	This page uses the layout <code>{{page.layout}}</code>
 					  </div>
-					  <div class="column is-1">
-					  <!--
-					  	<small><a href="pages/create?edit={{page}}" class="button is-primary is-outlined">Edit</a></small>
-					  -->
-					  	<small><a href="?delete={{page}}" class="button is-primary is-outlined">Delete</a></small>
+					  <div class="column is-5">
+					  	<small><a href="pages/create?edit={{page.page}}&layout={{page.layout}}" class="button is-primary is-outlined">Edit</a></small>
+					  	<small><a href="pages?rebuild={{page.page}}" class="button is-primary is-outlined">Rebuild</a></small>
+					  	<small><a target="_blank" href="{{system.evany.directory.home}}/{{page.endpoint}}" class="button is-primary is-outlined">View</a></small>
+					  	<small><a href="?delete={{page.page}}" class="button is-danger is-outlined">Delete</a></small>
 					  </div>
 					  </div>
 					</p>
@@ -54,6 +54,9 @@
     </p>
 	<button type="submit" class="button is-success">Create Layout</button>
 	</form>
+	<hr>
+	<h5><strong>Tip</strong></h5>
+	<p class="muted">Use the at (@) symbol at the start of the page title to assign it as the homepage.</p>
 	{% else %}
 	<br/>
 	<h5><strong>Note</strong></h5>

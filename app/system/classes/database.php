@@ -5,6 +5,26 @@
 	 * @author Jake Bown <jakebown@gmail.com>
 	 */
 
+	class db2 {
+		function __construct($table) {
+			$this->creds = array(
+				'host' => DB_HOST,
+				'user' => DB_USER,
+				'pass' => DB_PASS,
+				'db' => DB_DB,
+				'table' => $table
+			);
+
+			mysql_connect($this->creds['host'], $this->creds['user'], $this->creds['pass']) or die(mysql_error());
+			mysql_select_db($this->creds['db']);
+		}
+
+		function set($key, $val) {
+
+		}
+
+	}
+
 	class db {
 
 		function __construct($db = false) {
@@ -86,7 +106,13 @@
 		    foreach($assoc as $key => $val) {
 		    	if($level > 1) {
 		    		if(!is_array($key)) {
-		    			$converted[] = $key;
+		    			if(isset($val['endpoint'])) {
+		    				$converted[] = array('page' => $key, 'endpoint' => ($val['endpoint'] !== "/" ? $val['endpoint'] : "") );
+		    			} else {
+		    				$converted[] = $key;
+		    			}
+		    			
+
 		    		}
 		    	} else {
 		    		$converted[] = $assoc[$key];

@@ -15,8 +15,10 @@
 		"backend": "admin",
 		"debugging": "true",
 		"directory": {
-			"home": "//localhost/git/blocks",
-			"base": "//localhost/git/blocks/app"
+			"home": "//127.0.0.1:8080/repos/Tucan",
+			"base": "//127.0.0.1:8080/repos/Tucan/app",
+			"path": "/repos/Tucan/app",
+			"media": "/repos/Tucan/app/media"
 		},
 		"analytics": {
 			"google": "UA-XXXXX-X"

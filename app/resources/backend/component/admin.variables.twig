@@ -3,7 +3,7 @@
 {% block body %}
 	<h1 class="title">Variables</h1>
 	<h2 class="subtitle">
-	  A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+	  Are globally accessible key value pairs that can be used in all templates used in the front end.
 	</h2>
 		
 	<br/>
@@ -37,7 +37,7 @@
 					<p> <code>&#123;&#123;variables.{{key}}&#125;&#125;</code></p>
 				  </div>
 				  <div class="column is-1">
-				  	<small><a href="?delete={{key}}" class="button is-primary is-outlined">Delete</a></small>
+				  	<small><a href="?delete={{key}}" class="button is-danger is-outlined">Delete</a></small>
 				  </div>
 				  </div>
 				</p>

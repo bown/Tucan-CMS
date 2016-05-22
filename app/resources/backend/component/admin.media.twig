@@ -1,0 +1,50 @@
+{% extends "layout/layout.twig"%}
+
+{% block body %}
+	<h1 class="title">Media</h1>
+	<h2 class="subtitle">
+	  A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+	</h2>
+
+		{% if directory == false %}
+		<div class="notification">
+		  <span class="delete"></span>
+			<strong>No Pages.</strong> You have no pages here.
+		</div>
+		{% else %}
+			<div class="is-4">
+				<!-- Directory -->
+				<p>{{current}}</p>
+				<ul>
+					{% for dir in directory %}
+					<li><i class="ion-ios-folder-outline"></i> <a href="?dir={{current}}{{dir}}">{{dir}}</a></li>
+					{% endfor %}
+				</ul>
+				<!-- Directory -->
+			</div>
+		{% endif %}
+
+{% endblock %}
+
+{% block sidebar %}
+	{% if layouts != false %}
+	<p class="subtitle is-5">Create Page</p>
+	<form action="pages/create" method="get">
+	
+	<p class="control">
+      <span class="select">
+        <select name="layout">
+        {% for layout in layouts %}
+          <option value="{{layout.title}}">{{layout.title}}</option>
+        {% endfor %}
+        </select>
+      </span>
+    </p>
+	<button type="submit" class="button is-success">Create Layout</button>
+	</form>
+	{% else %}
+	<br/>
+	<h5><strong>Note</strong></h5>
+	<p class="muted">In order to create a page, you must first create a <a href="layouts">layout</a>.</p>
+	{% endif %}
+{% endblock %}

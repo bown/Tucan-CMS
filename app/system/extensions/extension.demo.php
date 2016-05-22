@@ -7,6 +7,8 @@
 
  tucan::register(function() {
 
+ 	echo "hiya";
+
  }, '/demo', 'Demo Extension');
 
 ?>

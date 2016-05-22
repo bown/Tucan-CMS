@@ -7,7 +7,8 @@
 
  //Secure Sessions
  session_start();
-
+ 
+ define('CONFIG', 'properties.json');
 
  //Composer 
  require 'app/vendor/autoload.php';
@@ -25,6 +26,7 @@
  require 'app/system/classes/database.php';
  require 'app/system/classes/extension.php';
  require 'app/system/classes/component.php';
+ require 'app/system/classes/media.php';
  require 'app/system/classes/layout.php';
  require 'app/system/classes/page.php';
  require 'app/system/application/config.php';

@@ -3,6 +3,7 @@
 	$route = new \Klein\Klein();
 	$config = new config();
 	$backend = $config->system->evany->backend;
+	define('BACKEND', $backend);
 
 	$route->respond(function ($request, $response, $service, $app) {
 
@@ -44,8 +45,12 @@
 	    }
 
 
-
 	    if($found) {
+	    	$endpoint = "app/cache/" . $found['page'] . ".html";
+	    	if(file_exists($endpoint)) {
+	    		die(file_get_contents($endpoint));
+	    	}
+
 	    	$build->render($found);
 	    } else {
 	    	$render->render("admin.error", ["system" => $config->system]);

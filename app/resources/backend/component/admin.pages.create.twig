@@ -3,9 +3,9 @@
 {% block body %}
 	{% if layout != false %}
 	<form method="post" action="save">
-	<h1><small><input required required="" name="page_title" class="page-title no-input input is-large" placeholder="Page Title" type="text"></small></h1>
-	<p class="endpoint-p"><input placeholder="endpoint" name="page_endpoint" type="text" class="input endpoint-title no-input" readonly></p>
-		
+	<h1><small><input required {% if edit != false %}value="{% if edit != false and edit.endpoint == '/' %}@{% endif %}{{edit.page}}"{% endif %} required="" name="page_title" class="page-title no-input input is-large" placeholder="Page Title" type="text"></small></h1>
+	<p class="endpoint-p"><input {% if edit != false %}value="{{edit.page}}"{% endif %} placeholder="endpoint" name="page_endpoint" type="text" class="input endpoint-title no-input" readonly></p>
+	<input type="hidden" name="page_layout" value="{{get.layout}}">
 	<br/>
 
 	<!-- Add Component -->
@@ -18,19 +18,27 @@
 							<h2 class="subtitle"><strong>{{layoutComponent}}</strong></h2>
 							<div class="columns">
 							{% if attribute(components, layoutComponent) != false %}
+								{% set index = 0 %}
 								{% for form in attribute(components, layoutComponent) %}
+									{% set index = index + 1 %}
 									<div class="column" style="min-height:100px;">
 										<p class="control">
 										<h6 class="subtitle is-6">{{form.name|capitalize}} {% if form.required and form.type != 'boolean' %}*{% endif %}</h6>
-									
+											{% set templateComponent = layoutComponent|replace({' ': '_'}) %}
+											
+	
 											<!-- Input -->
 											{% if form.type == 'input' %}
-											<input name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="text" class="input">
+											<input {% if attribute(edit, templateComponent) != false  %} 
+											value="{{attribute(edit, templateComponent)[index].value}}"
+											{% endif %} name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="text" class="input">
 											{% endif %}
 
 											<!-- Textarea -->
 											{% if form.type == 'textarea' %}
-											<textarea name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} class="textarea-min textarea"></textarea>
+											<textarea name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} class="textarea-min textarea">{% if attribute(edit, templateComponent) != false  %} 
+											{{attribute(edit, templateComponent)[index].value}}
+											{% endif %}</textarea>
 											{% endif %}
 
 											<!-- Select -->
@@ -52,14 +60,18 @@
 											{% if form.type == 'boolean' %}
 											 <div class="checkbox">
 										        <label>
-										          <input name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" type="checkbox" class="input">
+										          <input {% if attribute(edit, templateComponent) != false  %} 
+											value="{{attribute(edit, templateComponent)[index].value}}"
+											{% endif %} name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" type="checkbox" class="input">
 										        </label>
 										      </div>
 											{% endif %}
 
 											<!-- Integer -->
 											{% if form.type == 'integer' %}
-											<input name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="number" class="input">
+											<input {% if attribute(edit, templateComponent) != false  %} 
+											value="{{attribute(edit, templateComponent)[index].value}}"
+											{% endif %} name="{{random()}}{{form.id}}-{{form.name}}-{{layoutComponent}}" {% if form.required %}required required=""{% endif %} type="number" class="input">
 											{% endif %}
 										</p>
 									</div>
@@ -84,7 +96,7 @@
 
 {% block sidebar %}
 	{% if layout != false %}
-		<button type="submit" class="button is-success">Publish</button>
+		<button type="submit" class="button is-success">{% if get.edit %}Update{% else %}Publish{% endif %}</button>
 		<a href="{{system.evany.directory.home}}/{{system.evany.backend}}/pages" class="button">Cancel</a>
 		</form>
 	{% endif %}

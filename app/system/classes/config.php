@@ -7,7 +7,7 @@
 	
 	class config {
 
-		function __construct($json = "properties.json") {
+		function __construct($json = CONFIG) {
 			$parse = json_decode(file_get_contents($json));
 			$this->system = $parse;
 		}

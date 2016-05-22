@@ -39,6 +39,7 @@
 				$extensions = new extensions();
 
 				$active = explode('/', $_SERVER['REQUEST_URI']);
+				$activeDupe = $active;
 
 				$active = isset($active[2]) ? $active[2] : false;
 
@@ -46,8 +47,12 @@
 					$active = explode('?', $active)[0];
 				}
 
+				if($active == "extension") {
+					$active = isset($activeDupe[3]) ? $activeDupe[3] : $active;
+				}
+
 				$array['activePage'] = strtolower($active);
-				$array['extensions'] = $extensions->listAll();
+				$array['extensions'] = $extensions->listAll(false);
 
 				echo $this->backend->render("component/" . $layout . ".twig", $array);
 			} else {

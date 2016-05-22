@@ -3,7 +3,7 @@
 {% block body %}
 	<h1 class="title">Components</h1>
 	<h2 class="subtitle">
-	  A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+	  Are custom blocks of HTML built in Twig, they contain variables of multiple data types. 
 	</h2>
 		
 	<br/>
@@ -26,7 +26,8 @@
 				  	Uses the template <code>{{component.filename}}</code>
 				  </div>
 				  <div class="column is-3">
-				  	<small><a href="?delete={{component.id}}" class="button is-primary is-outlined">Delete</a></small>
+				  	<small><a href="?delete={{component.id}}" class="button is-primary is-outlined">Edit</a></small>
+				  	<small><a href="?delete={{component.id}}" class="button is-danger is-outlined">Delete</a></small>
 				  </div>
 				  </div>
 				</p>
@@ -53,7 +54,7 @@
 			        	</div>
 			        	<div class="column is-6">
 			        		<p class="control">
-								<input name="filename" class="no-input input" type="text" required placeholder="Template Filename">
+								<input name="filename" class="no-input input" type="text" required placeholder="Template Filename (file.twig)">
 							</p>
 			        	</div>
 			        </div>

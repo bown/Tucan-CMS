@@ -9,3 +9,8 @@ readme/*
 
 
 app/koala-config.json
+app/cache
+app/resources/backend/extensions
+jakeHero.twig
+introHero.twig
+hanaHero.twig

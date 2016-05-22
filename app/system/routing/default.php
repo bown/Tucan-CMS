@@ -9,14 +9,14 @@
 	require 'app/system/routing/frontend.php';
 
 
-	$route->with("/" . $backend, function () use ($route, $backend) {
+	$route->with("/" . BACKEND, function () use ($route, $backend) {
 
-		$route->respond('GET', "/", function ($request, $response) {
-	        $response->redirect("pages");
+		$route->respond('GET', "/?", function ($request, $response) {
+	        $response->redirect(BACKEND . "/pages");
 	    });
 
 		//Login
-		$route->respond("/login", function ($request, $response, $service, $app) {
+		$route->respond("/login/?", function ($request, $response, $service, $app) {
 		    $render = new render();
 		    $config = new config();
 
@@ -142,25 +142,43 @@
 
 		    $render = new render();
 		    $config = new config();
+		     $page = new page();
 		    $db = new db("pages");
 
 		    if(isset($request->delete)) {
 		    	$db->delete($request->delete);
 		    }
 
+
+			if(isset($_GET['rebuild'])) {
+				$rebuild = $page->savePage($_GET['rebuild']);
+			}
+
+
+
 		    $layouts = new db("layouts");
-		    $all = $db->convert($db->all(), 2);
+		    $all = $db->convert($db->all(), 1);
 		    $layouts = $layouts->convert($layouts->all());
 
 		    $render->render("admin.pages", ["system" => $config->system, "pages" => $all, "layouts" => $layouts]);
 
 		});
 
+
 		//Pages: Create
 		$route->respond("/pages/create", function ($request, $response, $service, $app) {
 			
 			$app->isUser;
+			$editPage = false;
 			
+
+			if(isset($_GET['edit'])) {
+				$db = new db("pages");
+				$edit = $db->get($_GET['edit']);
+				if(is_array($edit)) {
+					$editPage = $edit;
+				}
+			}
 
 		    $render = new render();
 		    $config = new config();
@@ -180,7 +198,8 @@
 
 		    $json = json_encode($all);
 
-		    $render->render("admin.pages.create", ["system" => $config->system, "layout" => $layout, "components" => $all, "json" => $json]);
+
+		    $render->render("admin.pages.create", ["edit" => $editPage, "get" => $_GET, "system" => $config->system, "layout" => $layout, "components" => $all, "json" => $json]);
 
 		});
 
@@ -299,6 +318,27 @@
 		    }
 
 		    $render->render("admin.extensions", ["system" => $config->system, "extensions" => $db->all()]);
+
+		});
+
+		//Extension
+		$route->respond("/extension/[:extension]", function ($request, $response, $service, $app) {
+
+			$app->isUser;
+
+			if(!isset($request->extension) || !file_exists("app/resources/backend/extensions/".$request->extension.".twig")) {
+				$response->redirect(BACKEND . "/pages");
+				return;
+			}
+
+			$ext = $request->extension;
+
+		    $render = new render();
+		    $config = new config();
+		    $db = new db("extensions");
+
+
+		    $render->render("../extensions/$ext", ["system" => $config->system, "extensions" => $db->all()]);
 
 		});
 	});

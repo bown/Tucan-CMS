@@ -7,9 +7,15 @@
 	
  class extensions {
 
- 	function listAll() {
+ 	function listAll($template = false) {
  		$db = new db("extensions");
- 		return $db->all();
+ 		$extensions = array();
+ 		foreach($db->all() as $key => $extend) {
+ 			if(file_exists("app/system/extensions/$extend") && file_exists("app/resources/backend/extensions/$key.twig") || !$template) {
+ 				$extensions[$key] = $extend;   			
+	   		}
+ 		}
+ 		return $extensions;
  	}
  }
 
